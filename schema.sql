@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS daily (
+  app TEXT NOT NULL,
+  day TEXT NOT NULL,
+  n   INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (app, day)
+);

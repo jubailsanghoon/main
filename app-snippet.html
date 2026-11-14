@@ -1,0 +1,7 @@
+<!-- 각 앱의 index.html <body> 맨 아래에 붙여넣기 (heat 앱은 app=heat, 강재 앱은 app=wcl) -->
+<script>
+(function () {
+  try { if (sessionStorage.getItem('iskHit')) return; sessionStorage.setItem('iskHit', '1'); } catch (e) {}
+  fetch('https://stats.iskorea.org/hit?app=heat', { method: 'POST', keepalive: true }).catch(function () {});
+})();
+</script>
