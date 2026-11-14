@@ -1178,5 +1178,11 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
   });
 
 </script>
+<script>
+if (!sessionStorage.getItem('iskHit_home')) {
+  sessionStorage.setItem('iskHit_home', '1');
+  fetch('https://stats.iskorea.org/hit?app=home', { method: 'POST', keepalive: true }).catch(() => {});
+}
+</script>
 </body>
 </html>
