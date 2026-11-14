@@ -18,6 +18,18 @@ try{
   var l=localStorage.getItem("lang");
   if(l&&/^(ko|en|zh|ja|es)$/.test(l))document.documentElement.setAttribute("lang",l);
 }catch(e){}
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if(this.open){
+        document.querySelectorAll('.faq-item').forEach(function(other){
+          if(other !== item && other.open) other.open = false;
+        });
+      }
+    });
+  });
+
 </script>
 <link rel="icon" type="image/jpeg" href="logo.jpg">
 <link rel="apple-touch-icon" href="logo.jpg">
@@ -139,6 +151,16 @@ h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
 footer{padding:36px 0 48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--sub)}
+.footer-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+footer a.bmc-link{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:8px;
+  background:var(--panel);border:1px solid var(--line);border-bottom:1px solid var(--line);
+  color:var(--ink);font-weight:500;font-size:13px;
+  transition:background-color 160ms var(--ease),border-color 160ms var(--ease),transform 120ms var(--ease);
+}
+footer a.bmc-link:hover{background:var(--panel-hover);border-color:var(--orange)}
+footer a.bmc-link:active{transform:scale(.98)}
 
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(12,15,18,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
 .lightbox[hidden]{display:none}
@@ -324,7 +346,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
 <footer>
   <div class="wrap">
     <span>Copyright © 2026 ISKorea Solutions. All rights reserved.</span>
-    <a href="mailto:isksolution555@gmail.com">isksolution555@gmail.com</a>
+    <div class="footer-links">
+      <a href="mailto:isksolution555@gmail.com">isksolution555@gmail.com</a>
+      <a class="bmc-link" href="https://buymeacoffee.com/iskorea" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+    </div>
   </div>
 </footer>
 
@@ -534,6 +559,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){showLbAt(dx<0?lbIdx+1:lbIdx-1);}
   },{passive:true});
 })();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if(this.open){
+        document.querySelectorAll('.faq-item').forEach(function(other){
+          if(other !== item && other.open) other.open = false;
+        });
+      }
+    });
+  });
+
 </script>
 </body>
 </html>
