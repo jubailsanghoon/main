@@ -167,26 +167,21 @@ header.top nav a:active{transform:scale(.98)}
 /* Hero */
 .hero{padding:24px 0 56px}
 .notice-banner{
-  margin:0 0 28px;background:var(--panel);border:1px solid var(--line-strong);border-left:4px solid var(--orange);
-  border-radius:12px;padding:16px 20px;box-shadow:0 8px 24px rgba(0,0,0,.06);
+  margin:0 0 10px;background:var(--panel);border:1px solid var(--line-strong);border-left:4px solid var(--orange);
+  border-radius:12px;padding:12px 20px 10px;box-shadow:0 8px 24px rgba(0,0,0,.06);
 }
 .notice-banner[hidden]{display:none}
-.notice-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.notice-main{flex:1;min-width:240px}
-.notice-badge-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.notice-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.notice-badge-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .notice-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;font-family:var(--mono);
-  font-size:11px;font-weight:600;background:rgba(255,127,0,.14);color:var(--orange-ink);border:1px solid rgba(255,127,0,.35)}
-.notice-main h2{margin:0;font-size:16px;font-weight:600;line-height:1.4}
-.notice-main p{margin:4px 0 0;font-size:13.5px;color:var(--sub);line-height:1.55;max-width:50ch;text-wrap:balance}
-.notice-side{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.notice-side .btn,.notice-side .btn-ghost{height:36px;padding:0 14px;font-size:13px}
-.notice-x{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--sub);
-  font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center}
-.notice-x:hover{color:var(--ink);border-color:var(--line-strong)}
-.notice-foot{display:flex;justify-content:flex-end;align-items:center;gap:14px;margin-top:10px;padding-top:10px;
-  border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
-.notice-hide-btn{background:none;border:none;padding:0;font:inherit;color:var(--muted);cursor:pointer;text-decoration:underline}
+  font-size:11px;font-weight:600;background:rgba(255,127,0,.14);color:var(--orange-ink);border:1px solid rgba(255,127,0,.35);white-space:nowrap}
+.notice-top h2{margin:0;font-size:16px;font-weight:600;line-height:1.4}
+.notice-side{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.notice-side .btn,.notice-side .btn-ghost{height:34px;padding:0 14px;font-size:13px;white-space:nowrap}
+.notice-hide-btn{background:none;border:none;padding:0;font:inherit;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;white-space:nowrap}
 .notice-hide-btn:hover{color:var(--ink)}
+.hero .notice-desc{margin:20px 0 0;padding-left:12px;font-size:13.5px;color:var(--sub);line-height:1.5;max-width:none}
+@media (min-width:861px){.hero .notice-desc{white-space:nowrap}}
 .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
 .hero h1{font-size:clamp(26px,3.2vw,36px);line-height:1.25;margin:0 0 16px;font-weight:600;letter-spacing:-.02em}
 .hero p{font-size:17px;color:var(--sub);max-width:34em;margin:0 0 28px}
@@ -425,23 +420,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     <div class="wrap">
       <div class="notice-banner" id="launchNoticeModal" hidden role="region" aria-labelledby="noticeTitle">
         <div class="notice-top">
-          <div class="notice-main">
-            <div class="notice-badge-row">
-              <span class="notice-badge" data-i18n="pop_badge">NEW · Beta v0.5 출시</span>
-              <h2 id="noticeTitle" data-i18n="pop_title">강관 진원도 · 터닝롤러 분석기 (TOA) 출시!</h2>
-            </div>
-            <p data-i18n="pop_desc">대형 강관(Φ3,000~15,000mm)의 자중·롤러 지지 진원도 예측과 최소 권장 롤러 세트를 분석하는 웹앱을 새롭게 공개했습니다.</p>
+          <div class="notice-badge-row">
+            <span class="notice-badge" data-i18n="pop_badge">NEW · Beta v0.5 출시</span>
+            <h2 id="noticeTitle" data-i18n="pop_title">강관 진원도 · 터닝롤러 분석기 (TOA) 출시!</h2>
           </div>
           <div class="notice-side">
             <a class="btn" href="https://toab.iskorea.org/" data-i18n="pop_open">앱 바로 열기</a>
             <a class="btn-ghost" href="toab.html" data-i18n="pop_detail">상세 안내 보기</a>
-            <button class="notice-x" id="noticeCloseX" type="button" aria-label="Close">×</button>
+            <button class="notice-hide-btn" id="noticeHideToday" type="button" data-i18n="pop_hide_today">오늘 다시 보지 않기</button>
+            <button class="notice-hide-btn" id="noticeHideForever" type="button" data-i18n="pop_hide_forever">계속 보지 않기</button>
           </div>
         </div>
-        <div class="notice-foot">
-          <button class="notice-hide-btn" id="noticeHideToday" type="button" data-i18n="pop_hide_today">오늘 다시 보지 않기</button>
-          <button class="notice-hide-btn" id="noticeHideForever" type="button" data-i18n="pop_hide_forever">계속 보지 않기</button>
-        </div>
+        <p class="notice-desc" data-i18n="pop_desc">대형 강관(Φ3,000~15,000mm)의 자중·롤러 지지 진원도 예측과 최소 권장 롤러 세트를 분석하는 웹앱을 새롭게 공개했습니다.</p>
       </div>
     </div>
     <div class="wrap hero-grid">
@@ -1390,8 +1380,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
         else if(mode==='today')localStorage.setItem(hideKey,String(Date.now()+86400000));
       }catch(e){}
     }
-    var nCloseX=document.getElementById('noticeCloseX'), nHideToday=document.getElementById('noticeHideToday'), nHideForever=document.getElementById('noticeHideForever');
-    nCloseX&&nCloseX.addEventListener('click',function(){closeNotice('once');});
+    var nHideToday=document.getElementById('noticeHideToday'), nHideForever=document.getElementById('noticeHideForever');
     nHideToday&&nHideToday.addEventListener('click',function(){closeNotice('today');});
     nHideForever&&nHideForever.addEventListener('click',function(){closeNotice('forever');});
   }
