@@ -29,7 +29,7 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
 
-    // 통계 조회: GET /stats
+    // 통계 조회: GET /stats (로컬 관리자 페이지 file:// 조회 허용)
     if (req.method === 'GET' && url.pathname === '/stats') {
       const { results } = await env.DB.prepare(
         'SELECT app, SUM(n) AS total, SUM(CASE WHEN day = ?1 THEN n ELSE 0 END) AS today FROM daily GROUP BY app'
@@ -37,7 +37,12 @@ export default {
       const out = {};
       for (const r of results) out[r.app] = { total: r.total, today: r.today };
       return new Response(JSON.stringify(out), {
-        headers: { ...cors, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
+        headers: {
+          ...cors,
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=60',
+        },
       });
     }
 

@@ -2,11 +2,10 @@ name = "iskorea-stats"
 main = "index.js"
 compatibility_date = "2026-11-01"
 
-# `npx wrangler d1 create iskorea-stats` 실행 후 출력된 database_id를 넣으세요
+# stats.iskorea.org 를 이 Worker에 연결 (iskorea.org 가 Cloudflare DNS에 있어야 함)
+routes = [{ pattern = "stats.iskorea.org", custom_domain = true }]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "iskorea-stats"
-database_id = "여기에-database_id"
-
-# stats.iskorea.org 를 이 Worker에 연결 (iskorea.org 가 Cloudflare DNS에 있어야 함)
-routes = [{ pattern = "stats.iskorea.org", custom_domain = true }]
+database_id = "2e08addb-2a38-4198-9877-a501e0ed08e5"

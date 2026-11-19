@@ -43,7 +43,7 @@ try{
   "name": "ISKorea Solutions",
   "url": "https://iskorea.org/",
   "email": "isksolution555@gmail.com",
-  "sameAs": ["https://heat.iskorea.org/", "https://wcl.iskorea.org/"]
+  "sameAs": ["https://heat.iskorea.org/", "https://wcl.iskorea.org/", "https://toab.iskorea.org/"]
 }
 </script>
 
@@ -122,12 +122,26 @@ header.top{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1
 header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:16px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap}
 .brand-logo{width:32px;height:32px;border-radius:8px;object-fit:contain;background:#fff;padding:2px;border:1px solid var(--line)}
-.tools{display:flex;align-items:center;gap:20px}
-header.top nav{display:flex;align-items:center;gap:20px}
-header.top nav a{font-size:14px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color 160ms var(--ease)}
-header.top nav a:hover{color:var(--ink)}
+.tools{display:flex;align-items:center;gap:10px}
+header.top nav{display:flex;align-items:center;gap:6px}
+header.top nav a{
+  display:inline-flex;align-items:center;gap:5px;height:36px;padding:0 10px;width:auto;
+  font-size:13px;font-weight:500;color:var(--sub);background:var(--panel);
+  border:1px solid var(--line);border-radius:8px;text-decoration:none;white-space:nowrap;
+  transition:background-color 160ms var(--ease),border-color 160ms var(--ease),color 160ms var(--ease),transform 120ms var(--ease);
+}
+header.top nav a svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+header.top nav a:hover{color:var(--ink);background:var(--panel-hover);border-color:var(--line-strong)}
+header.top nav a:active{transform:scale(.98)}
 
-.ctrl-group{display:flex;align-items:center;gap:8px}
+.ctrl-group{display:flex;align-items:center;gap:6px}
+.lang-wrap{
+  position:relative;display:inline-flex;align-items:center;height:36px;padding:0 10px;gap:6px;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  transition:background-color 160ms var(--ease),border-color 160ms var(--ease);
+}
+.lang-wrap:hover{background:var(--panel-hover);border-color:var(--line-strong)}
+.lang-wrap svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;color:var(--sub)}
 .lang-select,.theme{
   height:36px;
   font:inherit;
@@ -138,11 +152,12 @@ header.top nav a:hover{color:var(--ink)}
   border:1px solid var(--line);
   border-radius:8px;
   cursor:pointer;
+  width:auto;
   transition:background-color 160ms var(--ease),border-color 160ms var(--ease),transform 120ms var(--ease);
 }
-.lang-select{padding:0 12px}
-.theme{display:inline-flex;align-items:center;gap:8px;padding:0 12px;white-space:nowrap}
-.lang-select:hover,.theme:hover{background:var(--panel-hover);border-color:var(--line-strong)}
+.lang-select{height:34px;padding:0 2px 0 0;border:none;background:transparent;outline:none}
+.theme{display:inline-flex;align-items:center;gap:6px;padding:0 10px;white-space:nowrap}
+.theme:hover{background:var(--panel-hover);border-color:var(--line-strong)}
 .theme:active{transform:scale(.98)}
 .theme svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--sub)}
 .theme .moon{display:none}
@@ -150,7 +165,28 @@ header.top nav a:hover{color:var(--ink)}
 :root[data-eff="dark"] .theme .moon{display:block}
 
 /* Hero */
-.hero{padding:64px 0 56px}
+.hero{padding:24px 0 56px}
+.notice-banner{
+  margin:0 0 28px;background:var(--panel);border:1px solid var(--line-strong);border-left:4px solid var(--orange);
+  border-radius:12px;padding:16px 20px;box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+.notice-banner[hidden]{display:none}
+.notice-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.notice-main{flex:1;min-width:240px}
+.notice-badge-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.notice-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;font-family:var(--mono);
+  font-size:11px;font-weight:600;background:rgba(255,127,0,.14);color:var(--orange-ink);border:1px solid rgba(255,127,0,.35)}
+.notice-main h2{margin:0;font-size:16px;font-weight:600;line-height:1.4}
+.notice-main p{margin:4px 0 0;font-size:13.5px;color:var(--sub);line-height:1.5;max-width:none}
+.notice-side{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.notice-side .btn,.notice-side .btn-ghost{height:36px;padding:0 14px;font-size:13px}
+.notice-x{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--sub);
+  font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.notice-x:hover{color:var(--ink);border-color:var(--line-strong)}
+.notice-foot{display:flex;justify-content:flex-end;align-items:center;gap:14px;margin-top:10px;padding-top:10px;
+  border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.notice-hide-btn{background:none;border:none;padding:0;font:inherit;color:var(--muted);cursor:pointer;text-decoration:underline}
+.notice-hide-btn:hover{color:var(--ink)}
 .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
 .hero h1{font-size:clamp(26px,3.2vw,36px);line-height:1.25;margin:0 0 16px;font-weight:600;letter-spacing:-.02em}
 .hero p{font-size:17px;color:var(--sub);max-width:34em;margin:0 0 28px}
@@ -202,11 +238,14 @@ h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
 
 /* Screenshots + PRO Panel */
 .shots-wrap{grid-column:1/-1;border-top:1px solid var(--line);padding:24px 32px;background:var(--bg);
-  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:stretch}
-.shots{display:flex;gap:16px;overflow-x:auto}
-.shots figure{margin:0;flex:0 0 auto;width:144px;cursor:pointer;position:relative}
+  display:grid;grid-template-columns:minmax(0,auto) minmax(240px,1fr);gap:24px;align-items:stretch}
+.shots{display:flex;gap:16px;overflow-x:auto;min-width:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:thin}
+.shots figure{margin:0;flex:0 0 auto;width:144px;cursor:pointer;position:relative;scroll-snap-align:start}
+.shots figure.shot-wide{width:min(480px,76vw)}
 .shots img{display:block;width:100%;aspect-ratio:9/19;object-fit:cover;object-position:top;border:1px solid var(--line);
   border-radius:12px;background:var(--panel);transition:border-color 160ms var(--ease)}
+.shots figure.shot-wide img{aspect-ratio:16/9}
+.shots figure.shot-wide.missing::before{aspect-ratio:16/9}
 .shots figure:hover img{border-color:var(--line-strong)}
 .shot-pro-badge{position:absolute;top:8px;right:8px;background:var(--display);color:var(--display-ink);font-family:var(--mono);
   font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px;border:1px solid rgba(255,255,255,.16)}
@@ -310,7 +349,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(12,15,18,.86);
   display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
 .lightbox[hidden]{display:none}
-.lightbox-inner{position:relative;max-width:400px;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;touch-action:pan-y;user-select:none}
+.lightbox-inner{position:relative;max-width:min(92vw,960px);width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;touch-action:pan-y;user-select:none}
 .lightbox img{max-height:80vh;width:auto;max-width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.16)}
 .lightbox-cap{color:#e6eaed;font-size:14px}
 .lightbox-close{position:absolute;top:-44px;right:0;height:36px;padding:0 16px;background:var(--panel);color:var(--ink);
@@ -353,21 +392,24 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     <a class="brand" href="/"><img class="brand-logo" src="logo-sm.webp" width="32" height="31" decoding="async" alt="ISKorea Solutions">ISKorea Solutions</a>
     <div class="tools">
       <nav>
-        <a href="#apps" data-i18n="nav_apps">앱</a>
-        <a href="#guide" data-i18n="nav_guide">설치 안내</a>
-        <a href="#roadmap" data-i18n="nav_roadmap">소식</a>
-        <a href="#faq" data-i18n="nav_faq">FAQ</a>
-        <a href="#about" data-i18n="nav_about">소개</a>
-        <a href="mailto:isksolution555@gmail.com" data-i18n="nav_contact">문의</a>
+        <a href="#apps"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span data-i18n="nav_apps">앱</span></a>
+        <a href="#guide"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span data-i18n="nav_guide">설치 안내</span></a>
+        <a href="#roadmap"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span data-i18n="nav_roadmap">소식</span></a>
+        <a href="#faq"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span data-i18n="nav_faq">FAQ</span></a>
+        <a href="#about"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span data-i18n="nav_about">소개</span></a>
+        <a href="mailto:isksolution555@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span data-i18n="nav_contact">문의</span></a>
       </nav>
       <div class="ctrl-group">
-        <select class="lang-select" id="langSelect" aria-label="Language">
-          <option value="ko">한국어</option>
-          <option value="en">English</option>
-          <option value="zh">中文</option>
-          <option value="ja">日本語</option>
-          <option value="es">Español</option>
-        </select>
+        <div class="lang-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <select class="lang-select" id="langSelect" aria-label="Language">
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="es">Español</option>
+          </select>
+        </div>
         <button class="theme" id="theme" type="button" aria-label="테마 전환">
           <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
           <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -380,6 +422,28 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
 
 <main>
   <section class="hero">
+    <div class="wrap">
+      <div class="notice-banner" id="launchNoticeModal" hidden role="region" aria-labelledby="noticeTitle">
+        <div class="notice-top">
+          <div class="notice-main">
+            <div class="notice-badge-row">
+              <span class="notice-badge" data-i18n="pop_badge">NEW · Beta v0.5 출시</span>
+              <h2 id="noticeTitle" data-i18n="pop_title">강관 진원도 · 터닝롤러 분석기 (TOA) 출시!</h2>
+            </div>
+            <p data-i18n="pop_desc">대형 강관(Φ3,000~15,000mm)의 자중·롤러 지지 진원도 예측 및 최소 권장 롤러 세트 분석 웹앱을 새롭게 공개했습니다.</p>
+          </div>
+          <div class="notice-side">
+            <a class="btn" href="https://toab.iskorea.org/" data-i18n="pop_open">앱 바로 열기</a>
+            <a class="btn-ghost" href="toab.html" data-i18n="pop_detail">상세 안내 보기</a>
+            <button class="notice-x" id="noticeCloseX" type="button" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="notice-foot">
+          <button class="notice-hide-btn" id="noticeHideToday" type="button" data-i18n="pop_hide_today">오늘 다시 보지 않기</button>
+          <button class="notice-hide-btn" id="noticeHideForever" type="button" data-i18n="pop_hide_forever">계속 보지 않기</button>
+        </div>
+      </div>
+    </div>
     <div class="wrap hero-grid">
       <div>
         <h1 data-i18n="hero_title">현장에서 바로 꺼내 쓰는 계산 앱</h1>
@@ -496,6 +560,57 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
               </ul>
             </div>
             <div class="pro-box-foot" data-i18n="wcl_pro_foot">앱 상단 Free/PRO 배지에서 기기 고유번호로 간편 인증</div>
+          </aside>
+        </div>
+      </article>
+
+      <article class="app">
+        <div class="gauge" aria-hidden="true">
+          <div class="gauge-top">
+            <small data-i18n="toab_gauge_lbl">D / t 비율</small>
+            <span class="badge-live">API 2B · ISO</span>
+          </div>
+          <div><span class="val">400.0</span><span class="unit">D/t</span></div>
+          <div class="gauge-foot">API 2B · ISO 19902 · API 5L · DNV</div>
+        </div>
+        <div class="body">
+          <h3 data-i18n="toab_title">강관 진원도 · 터닝롤러 분석기 (TOA)</h3>
+          <a class="url" href="https://toab.iskorea.org/">toab.iskorea.org</a>
+          <p data-i18n="toab_desc">대형 강관(Φ3,000~15,000mm)의 자중 및 터닝롤러 지지 상태 진원도를 예측하고, 최소 권장 롤러 세트와 국제 규격 판정을 지원하는 엔지니어링 웹앱입니다.</p>
+          <ul>
+            <li data-i18n="toab_li1">Roark · Castigliano · Hertz 선접촉 기반 7종 지지 방식(TR2·TR4·더블롤러) 분석</li>
+            <li data-i18n="toab_li2">API 2B · ISO 19902 · API 5L · DNV-OS-C401 규격 판정 및 Brazier 좌굴 경고</li>
+            <li data-i18n="toab_li3">단면도·측면도·보강 도면 시각화 및 현장 실측(D_min/D_max) 실시간 반영</li>
+          </ul>
+          <div class="meta">
+            <span class="tag free" data-i18n="tag_beta">Beta v0.5</span>
+            <span class="tag" data-i18n="tag_pc_rec">PC 화면 권장</span>
+            <span>한국어·English·中文·日本語·Español</span>
+            <span class="visits" data-app="toab" hidden><span data-i18n="visits_total">누적 방문</span> <b data-k="total">0</b>, <span data-i18n="visits_today">오늘</span> <b data-k="today">0</b></span>
+          </div>
+          <div class="app-actions">
+            <a class="btn" href="https://toab.iskorea.org/" data-i18n="btn_open">앱 열기</a>
+            <a class="btn-ghost" href="toab.html" data-i18n="btn_detail">자세히 보기</a>
+          </div>
+        </div>
+        <div class="shots-wrap">
+          <div class="shots">
+            <figure class="shot-wide" data-shot="toab-1.webp" data-src="screenshots/toab-1.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="강관 진원도 · 터닝롤러 분석기 PC 대시보드 화면" loading="lazy" decoding="async"><figcaption data-i18n="toab_cap1">PC 대시보드</figcaption></figure>
+            <figure data-shot="toab-2.webp" data-src="screenshots/toab-2.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="강관 진원도 예측 및 규격 판정 화면" loading="lazy" decoding="async"><figcaption data-i18n="toab_cap2">진원도·규격 판정</figcaption></figure>
+            <figure data-shot="toab-3.webp" data-src="screenshots/toab-3.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="강관 단면도 및 측면도 시각화 화면" loading="lazy" decoding="async"><figcaption data-i18n="toab_cap3">단면도·측면도</figcaption></figure>
+            <figure data-shot="toab-4.webp" data-src="screenshots/toab-4.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="롤러 세트 최적화 및 체크리스트 화면" loading="lazy" decoding="async"><figcaption data-i18n="toab_cap4">롤러 분석·리포트</figcaption></figure>
+          </div>
+          <aside class="pro-box">
+            <div>
+              <div class="pro-box-head"><span class="pro-pill">BETA</span><span data-i18n="toab_box_title">TOA 엔지니어링 분석 안내</span></div>
+              <ul style="margin-top:12px">
+                <li data-i18n="toab_box_1">Roark 9th Ed. · Castigliano · Green 함수 · Hertz 선접촉 기반 1차 검토 도구</li>
+                <li data-i18n="toab_box_2">진행 중인 Girth Weld 수 및 처짐·Hertz 기준 최소 권장 롤러 세트 산출</li>
+                <li data-i18n="toab_box_3">5개 결과 탭(규격 판정·상태 비교·단면도·권고사항·체크리스트) 및 PDF 샘플 출력</li>
+                <li data-i18n="toab_box_4">최종 설계·제작 승인은 전문 엔지니어 검토 및 3D FEA 병행 필수</li>
+              </ul>
+            </div>
+            <div class="pro-box-foot"><a href="https://toab.iskorea.org/manual?lang=ko" target="_blank" rel="noopener" style="text-decoration:none;border-bottom:1px solid var(--line);" data-i18n="toab_box_foot">📖 전문 매뉴얼에서 상세 이론·공식 보기 →</a></div>
           </aside>
         </div>
       </article>
@@ -710,7 +825,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       wcl_pro_2:"크레인 인양 전 6대 필수 현장 안전 지침 점검표 제공",
       wcl_pro_3:"계산 결과 무제한 저장 및 현장 작업 데이터 관리",
       wcl_pro_foot:"앱 상단 Free/PRO 배지에서 기기 고유번호로 간편 인증",
-      tag_freemium:"기본 무료", tag_pro:"PRO 기능 있음",
+      toab_gauge_lbl:"D / t 비율",
+      toab_title:"강관 진원도 · 터닝롤러 분석기 (TOA)",
+      toab_desc:"대형 강관(Φ3,000~15,000mm)의 자중 및 터닝롤러 지지 상태 진원도를 예측하고, 최소 권장 롤러 세트와 국제 규격 판정을 지원하는 엔지니어링 웹앱입니다.",
+      toab_li1:"Roark · Castigliano · Hertz 선접촉 기반 7종 지지 방식(TR2·TR4·더블롤러) 분석",
+      toab_li2:"API 2B · ISO 19902 · API 5L · DNV-OS-C401 규격 판정 및 Brazier 좌굴 경고",
+      toab_li3:"단면도·측면도·보강 도면 시각화 및 현장 실측(D_min/D_max) 실시간 반영",
+      toab_cap1:"PC 대시보드", toab_cap2:"모바일 사양 입력", toab_cap3:"롤러·예측 진원도", toab_cap4:"분석 리포트",
+      toab_box_title:"TOA 엔지니어링 분석 안내",
+      toab_box_1:"Roark 9th Ed. · Castigliano · Green 함수 · Hertz 선접촉 기반 1차 검토 도구",
+      toab_box_2:"진행 중인 Girth Weld 수 및 처짐·Hertz 기준 최소 권장 롤러 세트 산출",
+      toab_box_3:"5개 결과 탭(규격 판정·상태 비교·단면도·권고사항·체크리스트) 및 PDF 샘플 출력",
+      toab_box_4:"최종 설계·제작 승인은 전문 엔지니어 검토 및 3D FEA 병행 필수",
+      toab_box_foot:"📖 전문 매뉴얼에서 상세 이론·공식 보기 →",
+      tag_freemium:"기본 무료", tag_pro:"PRO 기능 있음", tag_beta:"Beta v0.5", tag_pc_rec:"PC 화면 권장",
       visits_total:"누적 방문", visits_today:"오늘", btn_open:"앱 열기", btn_detail:"자세히 보기",
       soon_title:"새로운 앱을 준비하고 있습니다", soon_desc:"현장에 필요한 계산기나 관리 도구가 있다면 알려주세요", soon_btn:"앱 제안하기",
       guide_title:"홈 화면에 추가해 앱처럼 쓰기", guide_sub:"스토어 설치 없이 스마트폰 홈 화면에 바로가기를 추가하면 오프라인 현장에서도 빠르게 열 수 있습니다.",
@@ -750,7 +878,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq4_a:"각 앱 상단의 [Free] 배지를 눌러 기기 고유번호를 확인하고 성함·이메일 입력 후 후원을 완료하면 해당 기기에 영구 PRO가 활성화됩니다. 라이선스는 기기 1대(고유번호 1개) 기준으로 발급되므로, 기기를 변경하신 경우 새 기기에서 추가로 후원·인증을 진행해 주시기 바랍니다.",
       faq5_q:"후원 확인이나 라이선스·기능 요청은 어디로 문의하나요?",
       faq5_a:"후원 안내 섹션의 1:1 채팅 문의 버튼 또는 isksolution555@gmail.com으로 연락해 주시면 빠르게 확인해 드립니다.",
-      faq_note:"찾는 답변이 없다면 카카오 1:1 채팅으로 바로 문의해 주세요."
+      faq_note:"찾는 답변이 없다면 카카오 1:1 채팅으로 바로 문의해 주세요.",
+      pop_badge:"NEW · Beta v0.5 출시",
+      pop_title:"강관 진원도 · 터닝롤러 분석기 (TOA) 출시!",
+      pop_desc:"대형 강관(Φ3,000~15,000mm)의 자중·롤러 지지 진원도 예측 및 최소 권장 롤러 세트 분석 웹앱을 새롭게 공개했습니다.",
+      pop_li1:"API 2B · ISO 19902 · API 5L · DNV-OS-C401 규격 판정",
+      pop_li2:"Roark · Castigliano · Hertz 이론 및 전문 매뉴얼 제공 (PC 권장)",
+      pop_open:"앱 바로 열기", pop_detail:"상세 안내 보기", pop_hide_today:"오늘 다시 보지 않기", pop_hide_forever:"계속 보지 않기"
     },
     en: {
       page_title:"ISKorea Solutions · Industrial Field Web Apps",
@@ -785,7 +919,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       wcl_pro_2:"6 essential pre-lift crane safety guidelines checklist",
       wcl_pro_3:"Unlimited saved calculation logs & field data management",
       wcl_pro_foot:"Activate with Device ID from the top Free/PRO badge",
-      tag_freemium:"Free Basic", tag_pro:"PRO Features",
+      toab_gauge_lbl:"D / t Ratio",
+      toab_title:"Tubular Ovality & Roller Analysis (TOA)",
+      toab_desc:"Engineering web app for large tubulars (Φ3,000–15,000mm) to predict ovality under self-weight and turning rollers, optimize roller sets, and check API/ISO/DNV limits.",
+      toab_li1:"7 support models (TR2, TR4, Double Roller) via Roark, Castigliano & Hertz theory",
+      toab_li2:"API 2B, ISO 19902, API 5L & DNV-OS-C401 compliance with Brazier buckling alerts",
+      toab_li3:"Cross-section, side-view & reinforcement diagrams plus live field D_min/D_max check",
+      toab_cap1:"Pipe & Roller Input", toab_cap2:"Ovality & Code Check", toab_cap3:"Section & Side View", toab_cap4:"Roller & Report",
+      toab_box_title:"TOA Engineering Scope",
+      toab_box_1:"Preliminary engineering tool based on Roark 9th Ed., Castigliano & Hertz contact",
+      toab_box_2:"Calculates minimum roller sets by deflection, Hertz stress & active girth welds",
+      toab_box_3:"5 analysis tabs (Code, Compare, Diagrams, Recs, Checklist) & sample PDF export",
+      toab_box_4:"Final code sign-off requires qualified engineer review and 3D FEA verification",
+      toab_box_foot:"📖 View full theory & formulas in the manual →",
+      tag_freemium:"Free Basic", tag_pro:"PRO Features", tag_beta:"Beta v0.5", tag_pc_rec:"PC Screen Recommended",
       visits_total:"Total visits", visits_today:"Today", btn_open:"Open App", btn_detail:"Learn more",
       soon_title:"More field apps are on the way", soon_desc:"Need a specific calculator or inspection tool for your site? Let us know", soon_btn:"Suggest an App",
       guide_title:"Add to Home Screen", guide_sub:"No app store required. Pin the app to your home screen for fast offline access on site.",
@@ -825,7 +972,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq4_a:"Tap the [Free] badge at the top of each app, enter your name and email, and complete the support step to activate permanent PRO on that device. Each license is issued per Device ID (1 device), so if you switch devices, please complete a new support & activation on the new device.",
       faq5_q:"Where can I confirm my support or request new features?",
       faq5_a:"Reach out anytime via the Kakao 1:1 Chat button at the bottom right or email isksolution555@gmail.com.",
-      faq_note:"Still have questions? Message us directly via the Kakao Chat button below."
+      faq_note:"Still have questions? Message us directly via the Kakao Chat button below.",
+      pop_badge:"NEW · Beta v0.5 Released",
+      pop_title:"Tubular Ovality & Roller Analysis (TOA) is Live!",
+      pop_desc:"New engineering web app for large tubulars (Φ3,000–15,000mm) to predict self-weight & roller ovality and optimize turning roller sets.",
+      pop_li1:"API 2B, ISO 19902, API 5L & DNV-OS-C401 compliance check",
+      pop_li2:"Roark, Castigliano & Hertz theory with technical manual (PC recommended)",
+      pop_open:"Open App", pop_detail:"View Details", pop_hide_today:"Don't show today", pop_hide_forever:"Don't show again"
     },
     zh: {
       page_title:"ISKorea Solutions · 工业现场计算网页应用",
@@ -860,7 +1013,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       wcl_pro_2:"提供起重机吊装前 6 项核心现场安全检查指南",
       wcl_pro_3:"无限保存计算结果与现场作业数据管理",
       wcl_pro_foot:"在应用顶部 Free/PRO 徽章处通过设备识别码即可激活",
-      tag_freemium:"基础免费", tag_pro:"含 PRO 功能",
+      toab_gauge_lbl:"D / t 径厚比",
+      toab_title:"大口径钢管圆度与滚轮架分析仪 (TOA)",
+      toab_desc:"面向大型钢管(Φ3,000~15,000mm)预测自重与滚轮支撑下的椭圆度，优化滚轮架数量并对照 API/ISO/DNV 规范进行判定。",
+      toab_li1:"基于 Roark·Castigliano·Hertz 理论分析 7 种支撑方式(TR2·TR4·双滚轮)",
+      toab_li2:"支持 API 2B·ISO 19902·API 5L·DNV-OS-C401 规范判定及 Brazier 屈曲预警",
+      toab_li3:"截面图·侧视图·加强圈图纸可视化及现场实测(D_min/D_max)实时校验",
+      toab_cap1:"钢管与滚轮输入", toab_cap2:"圆度与规范判定", toab_cap3:"截面图与侧视图", toab_cap4:"滚轮分析与报告",
+      toab_box_title:"TOA 工程分析说明",
+      toab_box_1:"基于 Roark 第9版、卡氏定理及赫兹线接触理论的初步工程校核工具",
+      toab_box_2:"结合在焊环缝数、挠度及赫兹应力计算最小推荐滚轮架组数",
+      toab_box_3:"5大分析标签页(规范判定·对比·视图·建议·检查表)及 PDF 示例导出",
+      toab_box_4:"最终设计与制造审批须由专业工程师复核并配合 3D FEA 验证",
+      toab_box_foot:"📖 在专业手册中查看完整理论与公式 →",
+      tag_freemium:"基础免费", tag_pro:"含 PRO 功能", tag_beta:"Beta v0.5", tag_pc_rec:"建议 PC 端使用",
       visits_total:"累计访问", visits_today:"今日", btn_open:"打开应用", btn_detail:"查看详情",
       soon_title:"正在准备更多现场应用", soon_desc:"如果现场需要其他计算器或管理工具，欢迎联系建议", soon_btn:"提出建议",
       guide_title:"添加到手机主屏幕", guide_sub:"无需应用商店下载，添加到主屏幕即可在无网络现场快速打开。",
@@ -900,7 +1066,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq4_a:"点击应用顶部的 [Free] 徽章查看设备码，填写姓名和邮箱并完成赞助即可在该设备上永久激活。授权按单台设备(1 个设备码)发放，如更换设备请在新设备上重新赞助并激活。",
       faq5_q:"赞助确认或功能建议应联系哪里？",
       faq5_a:"请点击右下角 Kakao 1:1 聊天按钮或发送邮件至 isksolution555@gmail.com。",
-      faq_note:"如果没有找到需要的答案，欢迎点击右下角 Kakao 聊天直接咨询。"
+      faq_note:"如果没有找到需要的答案，欢迎点击右下角 Kakao 聊天直接咨询。",
+      pop_badge:"NEW · Beta v0.5 上线",
+      pop_title:"大口径钢管圆度与滚轮架分析仪 (TOA) 正式上线！",
+      pop_desc:"全新发布面向大型钢管(Φ3,000~15,000mm)的自重与滚轮支撑椭圆度预测及滚轮架优化工程网页应用。",
+      pop_li1:"支持 API 2B · ISO 19902 · API 5L · DNV-OS-C401 规范判定",
+      pop_li2:"提供 Roark · 卡氏定理 · 赫兹理论与专业工程手册 (建议 PC 端使用)",
+      pop_open:"立即打开应用", pop_detail:"查看详情", pop_hide_today:"今日不再显示", pop_hide_forever:"不再显示"
     },
     ja: {
       page_title:"ISKorea Solutions · 産業現場向け計算Webアプリ",
@@ -935,7 +1107,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       wcl_pro_2:"クレーン揚重前の6大必須安全チェックリストを提供",
       wcl_pro_3:"計算結果の無制限保存および現場データ管理",
       wcl_pro_foot:"アプリ上部のFree/PROバッジから端末IDで有効化できます",
-      tag_freemium:"基本無料", tag_pro:"PRO機能あり",
+      toab_gauge_lbl:"D / t 比",
+      toab_title:"鋼管真円度・ターニングローラー解析 (TOA)",
+      toab_desc:"大口径鋼管(Φ3,000〜15,000mm)の自重・ローラー支持時の真円度を予測し、必要ローラーセット数と国際規格(API/ISO/DNV)を判定するWebアプリです。",
+      toab_li1:"Roark・Castigliano・Hertz理論に基づく7種の支持方式(TR2・TR4・ダブルローラー)解析",
+      toab_li2:"API 2B・ISO 19902・API 5L・DNV-OS-C401 規格判定および Brazier 座屈警告",
+      toab_li3:"断面図・側面図・補強図面の可視化および現場実測(D_min/D_max)のリアルタイム反映",
+      toab_cap1:"鋼管・ローラー入力", toab_cap2:"真円度・規格判定", toab_cap3:"断面図・側面図", toab_cap4:"ローラー解析・レポート",
+      toab_box_title:"TOA エンジニアリング案内",
+      toab_box_1:"Roark第9版・Castigliano・Hertz線接触理論に基づく一次検討ツール",
+      toab_box_2:"進行中の周継手溶接数・たわみ・Hertz応力から最小推奨ローラー数を算出",
+      toab_box_3:"5つの結果タブ(規格判定・比較・図面・推奨事項・チェックリスト)＆PDF出力",
+      toab_box_4:"最終設計・製作承認は専門技術者の確認および3D FEA検証を併用してください",
+      toab_box_foot:"📖 専門マニュアルで詳細理論・公式を見る →",
+      tag_freemium:"基本無料", tag_pro:"PRO機能あり", tag_beta:"Beta v0.5", tag_pc_rec:"PC画面推奨",
       visits_total:"累計訪問", visits_today:"本日", btn_open:"アプリを開く", btn_detail:"詳しく見る",
       soon_title:"新しいアプリを準備中です", soon_desc:"現場で必要な計算機や管理ツールがあればお知らせください", soon_btn:"アプリを提案",
       guide_title:"ホーム画面に追加して使う", guide_sub:"ストアからのインストール不要。ホーム画面に追加すればオフライン現場でもすぐ開けます。",
@@ -975,7 +1160,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq4_a:"各アプリ上部の[Free]バッジから端末IDを確認し、お名前・メール入力後に支援を完了するとその端末で永久PROが有効になります。ライセンスは1端末(1固有ID)ごとの発行となるため、機種変更時は新しい端末にて改めてご支援・認証をお願いいたします。",
       faq5_q:"支援確認やライセンス・機能追加の問い合わせ先は？",
       faq5_a:"右下のカカオ1:1チャットボタン、または isksolution555@gmail.com までご連絡ください。",
-      faq_note:"解決しない場合は右下のカカオチャットよりお気軽にお問い合わせください。"
+      faq_note:"解決しない場合は右下のカカオチャットよりお気軽にお問い合わせください。",
+      pop_badge:"NEW · Beta v0.5 公開",
+      pop_title:"鋼管真円度・ターニングローラー解析 (TOA) 公開！",
+      pop_desc:"大口径鋼管(Φ3,000〜15,000mm)の自重・ローラー支持真円度予測および必要ローラーセット数解析Webアプリを新たに公開しました。",
+      pop_li1:"API 2B · ISO 19902 · API 5L · DNV-OS-C401 規格判定に対応",
+      pop_li2:"Roark · Castigliano · Hertz 理論と専門マニュアルを提供 (PC画面推奨)",
+      pop_open:"アプリを開く", pop_detail:"詳細を見る", pop_hide_today:"今日は表示しない", pop_hide_forever:"今後表示しない"
     },
     es: {
       page_title:"ISKorea Solutions · Aplicaciones Web Industriales",
@@ -1010,7 +1201,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       wcl_pro_2:"Lista de verificación con 6 pautas esenciales de seguridad en grúas",
       wcl_pro_3:"Almacenamiento ilimitado de cálculos y gestión de datos de campo",
       wcl_pro_foot:"Actívalo con el ID del dispositivo en la insignia Free/PRO",
-      tag_freemium:"Básico Gratis", tag_pro:"Funciones PRO",
+      toab_gauge_lbl:"Relación D / t",
+      toab_title:"Análisis de Ovalidad y Rodillos (TOA)",
+      toab_desc:"App de ingeniería para grandes tubulares (Φ3,000–15,000mm) que predice la ovalidad bajo peso propio y rodillos, optimiza juegos de rodillos y verifica normas API/ISO/DNV.",
+      toab_li1:"7 modos de soporte (TR2, TR4, doble rodillo) según Roark, Castigliano y Hertz",
+      toab_li2:"Verificación API 2B, ISO 19902, API 5L, DNV-OS-C401 y alerta de pandeo Brazier",
+      toab_li3:"Diagramas de sección, vista lateral, refuerzos y control en obra (D_min/D_max)",
+      toab_cap1:"Datos de Tubo/Rodillo", toab_cap2:"Ovalidad y Norma", toab_cap3:"Sección y Lateral", toab_cap4:"Rodillos e Informe",
+      toab_box_title:"Alcance de Ingeniería TOA",
+      toab_box_1:"Herramienta preliminar basada en Roark 9ª ed., Castigliano y contacto Hertz",
+      toab_box_2:"Calcula juegos mínimos de rodillos según deflexión, Hertz y soldaduras activas",
+      toab_box_3:"5 pestañas de resultados (Norma, Comparación, Planos, Guías, Checklist) y PDF",
+      toab_box_4:"La aprobación final requiere revisión de ingeniero calificado y verificación FEA 3D",
+      toab_box_foot:"📖 Ver teoría y fórmulas completas en el manual →",
+      tag_freemium:"Básico Gratis", tag_pro:"Funciones PRO", tag_beta:"Beta v0.5", tag_pc_rec:"Recomendado en PC",
       visits_total:"Visitas totales", visits_today:"Hoy", btn_open:"Abrir App", btn_detail:"Ver detalles",
       soon_title:"Nuevas aplicaciones en camino", soon_desc:"¿Necesitas otra calculadora o herramienta de campo? Cuéntanos", soon_btn:"Sugerir App",
       guide_title:"Añadir a la pantalla de inicio", guide_sub:"Sin tiendas de aplicaciones. Guárdala en tu inicio para acceso rápido incluso sin conexión.",
@@ -1050,7 +1254,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq4_a:"Pulsa la insignia [Free] arriba en la app, ingresa tu nombre y correo y completa el apoyo para activar PRO permanente en ese equipo. Cada licencia se emite por 1 dispositivo (1 ID), por lo que si cambias de equipo deberás realizar un nuevo apoyo y activación en el nuevo dispositivo.",
       faq5_q:"¿Dónde confirmo mi apoyo o envío sugerencias?",
       faq5_a:"Usa el botón de Chat Kakao abajo a la derecha o escribe a isksolution555@gmail.com.",
-      faq_note:"¿Tienes otra duda? Escríbenos directo por el chat de Kakao abajo a la derecha."
+      faq_note:"¿Tienes otra duda? Escríbenos directo por el chat de Kakao abajo a la derecha.",
+      pop_badge:"NEW · Beta v0.5 Lanzado",
+      pop_title:"¡Nuevo: Análisis de Ovalidad y Rodillos (TOA)!",
+      pop_desc:"Nueva app web de ingeniería para grandes tubulares (Φ3,000–15,000mm) que predice la ovalidad y optimiza juegos de rodillos.",
+      pop_li1:"Verificación API 2B, ISO 19902, API 5L y DNV-OS-C401",
+      pop_li2:"Teoría Roark, Castigliano y Hertz con manual técnico (recomendado en PC)",
+      pop_open:"Abrir App", pop_detail:"Ver detalles", pop_hide_today:"No mostrar hoy", pop_hide_forever:"No volver a mostrar"
     }
   };
 
@@ -1168,6 +1378,23 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     });
   }).catch(function(){});
 
+  var nModal=document.getElementById('launchNoticeModal');
+  if(nModal){
+    var hideKey='isk_toab_popup_hide_until', hideVal='';
+    try{hideVal=localStorage.getItem(hideKey)||'';}catch(e){}
+    if(hideVal!=='forever' && Date.now()>(parseInt(hideVal,10)||0)){nModal.hidden=false;}
+    function closeNotice(mode){
+      nModal.hidden=true;
+      try{
+        if(mode==='forever')localStorage.setItem(hideKey,'forever');
+        else if(mode==='today')localStorage.setItem(hideKey,String(Date.now()+86400000));
+      }catch(e){}
+    }
+    var nCloseX=document.getElementById('noticeCloseX'), nHideToday=document.getElementById('noticeHideToday'), nHideForever=document.getElementById('noticeHideForever');
+    nCloseX&&nCloseX.addEventListener('click',function(){closeNotice('once');});
+    nHideToday&&nHideToday.addEventListener('click',function(){closeNotice('today');});
+    nHideForever&&nHideForever.addEventListener('click',function(){closeNotice('forever');});
+  }
 
 })();
 
