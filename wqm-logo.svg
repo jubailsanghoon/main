@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <filter id="toaSoftShadow" x="-15%" y="-15%" width="130%" height="135%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <g id="wqmCardArt">
+      <rect x="116" y="156" width="280" height="200" rx="24" ry="24" fill="none" stroke-width="19" stroke-linejoin="round"/>
+      <circle cx="192" cy="236" r="28" fill="none" stroke-width="16"/>
+      <path d="M148 312 c0-24 20-38 44-38 s44 14 44 38" fill="none" stroke-width="16" stroke-linecap="round"/>
+      <line x1="262" y1="222" x2="360" y2="222" stroke-width="17" stroke-linecap="round"/>
+      <line x1="262" y1="262" x2="344" y2="262" stroke-width="17" stroke-linecap="round"/>
+      <line x1="262" y1="302" x2="324" y2="302" stroke-width="17" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="108" ry="108" fill="#1e3a8a"/>
+  <!-- 1. Soft cast shadow -->
+  <use href="#wqmCardArt" transform="translate(0, 7)" stroke="#061033" opacity="0.6" filter="url(#toaSoftShadow)"/>
+  <!-- 2. Subtle 3D bottom bevel thickness -->
+  <use href="#wqmCardArt" transform="translate(0, 3)" stroke="#b8c7ea"/>
+  <!-- 3. Crisp pure white foreground -->
+  <use href="#wqmCardArt" stroke="#ffffff"/>
+</svg>

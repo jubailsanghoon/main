@@ -43,7 +43,7 @@ try{
   "name": "ISKorea Solutions",
   "url": "https://iskorea.org/",
   "email": "isksolution555@gmail.com",
-  "sameAs": ["https://heat.iskorea.org/", "https://wcl.iskorea.org/", "https://toab.iskorea.org/"]
+  "sameAs": ["https://wqm.iskorea.org/", "https://heat.iskorea.org/", "https://wcl.iskorea.org/", "https://toab.iskorea.org/"]
 }
 </script>
 
@@ -199,8 +199,52 @@ header.top nav a:active{transform:scale(.98)}
 
 /* Hero Icon Ring */
 .hero-icon-ring{display:flex;justify-content:center;align-items:center}
-.hero-icon-ring img{width:100%;max-width:320px;height:auto;display:block}
-:root[data-eff="dark"] .hero-icon-ring img{filter:invert(1)}
+.hero-app-ring{
+  position:relative;width:300px;height:300px;max-width:100%;flex-shrink:0;
+}
+.hero-app-ring::before{
+  content:"";position:absolute;inset:42px;border-radius:50%;
+  border:1.5px dashed rgba(108,122,134,.28);pointer-events:none;
+}
+.hero-ring-center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  text-align:center;pointer-events:none;color:var(--muted);
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;line-height:1.35;
+}
+.hero-ring-node{
+  position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;gap:4px;
+  text-decoration:none;color:#667480;transition:color 160ms var(--ease),transform 160ms var(--ease);
+}
+:root[data-eff="dark"] .hero-ring-node{color:#96a4af}
+.hero-ring-node:hover{color:var(--orange-ink);transform:translateY(-2px)}
+.hero-ring-node.is-heat:hover{color:#ea5d11}
+.hero-ring-node.is-wcl:hover{color:#165dff}
+.hero-ring-node.is-toab:hover{color:#2563eb}
+.hero-ring-node.is-wps:hover{color:#dc2626}
+.hero-ring-circle{
+  width:64px;height:64px;border-radius:50%;background:transparent;
+  display:grid;place-items:center;overflow:hidden;
+  filter:grayscale(100%) opacity(.78);
+  transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),filter 180ms var(--ease);
+}
+.hero-ring-node.is-disabled{cursor:default}
+.hero-ring-node:hover .hero-ring-circle{
+  filter:grayscale(0%) opacity(1);
+  transform:scale(1.06);
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+.hero-ring-circle svg{
+  width:64px;height:64px;display:block;
+}
+.hero-ring-lbl{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.03em;line-height:1;
+}
+.hero-ring-node.pos-1{left:calc(50% - 36px);top:0}
+.hero-ring-node.pos-2{right:10px;top:58px}
+.hero-ring-node.pos-3{right:10px;bottom:44px}
+.hero-ring-node.pos-4{left:calc(50% - 36px);bottom:-6px}
+.hero-ring-node.pos-5{left:10px;bottom:44px}
+.hero-ring-node.pos-6{left:10px;top:58px}
 
 /* Sections */
 h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
@@ -272,9 +316,10 @@ h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
 .guide-card h3{margin:0 0 12px;font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px}
 .guide-card .os-badge{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--orange-ink)}
 .guide-card ol{margin:0;padding-left:20px;color:var(--sub);font-size:14px;display:grid;gap:8px}
+.guide-card li{white-space:pre-line}
 
 .roadmap-sec{padding:64px 0}
-.roadmap-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+.roadmap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .road-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;position:relative;overflow:hidden}
 .road-card.has-q{display:flex;flex-direction:column;min-height:140px}
 .road-q{margin:auto 0;text-align:center;font-family:var(--mono);font-size:76px;font-weight:600;
@@ -296,6 +341,7 @@ h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
 .sec-fold-head::after{content:"+";font-family:var(--mono);font-size:20px;font-weight:500;color:var(--orange-ink);flex-shrink:0;
   width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
 .sec-fold[open] .sec-fold-head::after{content:"−"}
+.sec-fold-body .road-card{background:var(--bg)}
 .sec-fold-body{padding:24px 28px 28px;border-top:1px solid var(--line)}
 .sec-fold-body .support-table-wrap,.sec-fold-body .faq-item{background:var(--bg)}
 
@@ -337,8 +383,10 @@ h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
 
 /* Footer */
 footer{padding:36px 0 48px;color:var(--muted);font-size:13px}
-footer .wrap{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;align-items:center;text-align:right}
-footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--sub)}
+footer .wrap{display:flex;justify-content:flex-end;gap:8px;flex-wrap:nowrap;align-items:center;text-align:right}
+footer .wrap span{white-space:nowrap}
+footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--sub);flex-shrink:0}
+@media (max-width:560px){footer{font-size:11px}footer .wrap{gap:6px}}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(12,15,18,.86);
@@ -378,6 +426,12 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
   header.top nav{display:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.logo-popup{position:fixed;inset:0;z-index:120;background:rgba(12,15,18,.55);backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;padding:24px;cursor:pointer}
+.logo-popup[hidden]{display:none}
+.logo-popup img{width:min(70vw,280px);height:auto;border-radius:18px;background:#fff;padding:12px;
+  box-shadow:0 20px 56px rgba(0,0,0,.35);animation:logoPopIn 180ms var(--ease)}
+@keyframes logoPopIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
 </style>
 </head>
 <body>
@@ -421,17 +475,17 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       <div class="notice-banner" id="launchNoticeModal" hidden role="region" aria-labelledby="noticeTitle">
         <div class="notice-top">
           <div class="notice-badge-row">
-            <span class="notice-badge" data-i18n="pop_badge">NEW · Beta v0.5 출시</span>
-            <h2 id="noticeTitle" data-i18n="pop_title">강관 진원도 · 터닝롤러 분석기 (TOA) 출시!</h2>
+            <span class="notice-badge" data-i18n="pop_badge">NEW · v1.0 출시</span>
+            <h2 id="noticeTitle" data-i18n="pop_title">용접사 자격 관리 (WQM) 정식 출시!</h2>
           </div>
           <div class="notice-side">
-            <a class="btn" href="https://toab.iskorea.org/" data-i18n="pop_open">앱 바로 열기</a>
-            <a class="btn-ghost" href="toab.html" data-i18n="pop_detail">상세 안내 보기</a>
+            <a class="btn" href="https://wqm.iskorea.org/" data-i18n="pop_open">앱 바로 열기</a>
+            <a class="btn-ghost" href="wqm.html" data-i18n="pop_detail">상세 안내 보기</a>
             <button class="notice-hide-btn" id="noticeHideToday" type="button" data-i18n="pop_hide_today">오늘 다시 보지 않기</button>
             <button class="notice-hide-btn" id="noticeHideForever" type="button" data-i18n="pop_hide_forever">계속 보지 않기</button>
           </div>
         </div>
-        <p class="notice-desc" data-i18n="pop_desc">대형 강관(Φ3,000~15,000mm)의 자중·롤러 지지 진원도 예측과 최소 권장 롤러 세트를 분석하는 웹앱을 새롭게 공개했습니다.</p>
+        <p class="notice-desc" data-i18n="pop_desc">ISO 9606-1·ASME IX·AWS D1.1·14732 기반 용접사 자격 만료·6개월 연속성 추적, 사진·QR/바코드 자격 카드(PDF/Excel)와 적격자 판별을 지원하는 WQM 웹앱을 공개했습니다.</p>
       </div>
     </div>
     <div class="wrap hero-grid">
@@ -443,8 +497,46 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
           <a class="btn-ghost" href="#guide" data-i18n="hero_guide_btn">홈 화면 추가 방법</a>
         </div>
       </div>
-      <div class="hero-icon-ring" aria-hidden="true">
-        <img src="hero-icons-ring.webp" alt="산업현장, 용접, 계측, 기록 아이콘" width="320" height="320" decoding="async" fetchpriority="high">
+      <div class="hero-icon-ring">
+        <div class="hero-app-ring" role="navigation" aria-label="진행 중인 앱 바로가기">
+          <div class="hero-ring-center">ISKOREA<br>APPS</div>
+          <a class="hero-ring-node pos-1 is-heat" href="https://heat.iskorea.org/" data-i18n-title="ring_heat_tip" title="Heat Input Calculator (입열량 계산기)">
+            <span class="hero-ring-circle">
+              <svg viewBox="0 0 512 512"><circle cx="256" cy="256" r="245" fill="#ea5d11" stroke="#6b7280" stroke-width="8"/><rect x="148" y="124" width="246" height="246" rx="26" ry="26" fill="none" stroke="#ffffff" stroke-width="18" stroke-linejoin="round"/><circle cx="168" cy="180" r="13" fill="none" stroke="#ffffff" stroke-width="12"/><path d="M124 180 a21 21 0 1 1 42 0" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/><circle cx="168" cy="250" r="13" fill="none" stroke="#ffffff" stroke-width="12"/><path d="M124 250 a21 21 0 1 1 42 0" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/><circle cx="168" cy="320" r="13" fill="none" stroke="#ffffff" stroke-width="12"/><path d="M124 320 a21 21 0 1 1 42 0" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/><polyline points="190,294 210,294 222,272 236,294 252,220 272,294 292,164 306,244 320,202 342,324 354,260 380,260" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><rect x="386" y="384" width="28" height="28" rx="6" ry="6" fill="#ffffff"/></svg>
+            </span>
+            <span class="hero-ring-lbl">Heat</span>
+          </a>
+          <a class="hero-ring-node pos-2 is-wcl" href="https://wcl.iskorea.org/" data-i18n-title="ring_wcl_tip" title="강재 중량 및 인양 계산기 (WCL)">
+            <span class="hero-ring-circle">
+              <svg viewBox="0 0 512 512"><circle cx="256" cy="256" r="245" fill="#1459ff" stroke="#6b7280" stroke-width="8"/><path d="M222 192 a42 42 0 1 1 68 0 h46 c8 0 15 5 18 13 l42 138 c4 12-5 25-18 25 H134 c-13 0-22-13-18-25 l42-138 c3-8 10-13 18-13 h46 z" fill="none" stroke="#ffffff" stroke-width="26" stroke-linejoin="round"/><circle cx="256" cy="166" r="22" fill="none" stroke="#ffffff" stroke-width="22"/></svg>
+            </span>
+            <span class="hero-ring-lbl">Weight</span>
+          </a>
+          <a class="hero-ring-node pos-3 is-toab" href="https://toab.iskorea.org/" data-i18n-title="ring_toab_tip" title="강관 진원도 · 터닝롤러 분석기 (TOA)">
+            <span class="hero-ring-circle">
+              <svg viewBox="0 0 512 512"><circle cx="256" cy="256" r="245" fill="#2563eb" stroke="#6b7280" stroke-width="8"/><circle cx="256" cy="244" r="96" fill="none" stroke="#ffffff" stroke-width="18"/><circle cx="152" cy="336" r="52" fill="#2563eb" stroke="#ffffff" stroke-width="18"/><circle cx="152" cy="336" r="18" fill="none" stroke="#ffffff" stroke-width="15"/><circle cx="360" cy="336" r="52" fill="#2563eb" stroke="#ffffff" stroke-width="18"/><circle cx="360" cy="336" r="18" fill="none" stroke="#ffffff" stroke-width="15"/><line x1="88" y1="388" x2="424" y2="388" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/><path d="M126 244 A134 134 0 0 1 384 214" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/><polyline points="354,196 388,218 402,178" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="hero-ring-lbl">Tubular</span>
+          </a>
+          <a class="hero-ring-node pos-4 is-wqm" href="https://wqm.iskorea.org/" data-i18n-title="ring_wqm_tip" title="용접사 자격 관리 (WQM)">
+            <span class="hero-ring-circle">
+              <svg viewBox="0 0 512 512"><defs><filter id="heroWqmSh" x="-15%" y="-15%" width="130%" height="135%"><feGaussianBlur stdDeviation="5"/></filter><g id="heroWqmArt"><rect x="116" y="156" width="280" height="200" rx="24" ry="24" fill="none" stroke-width="19" stroke-linejoin="round"/><circle cx="192" cy="236" r="28" fill="none" stroke-width="16"/><path d="M148 312 c0-24 20-38 44-38 s44 14 44 38" fill="none" stroke-width="16" stroke-linecap="round"/><line x1="262" y1="222" x2="360" y2="222" stroke-width="17" stroke-linecap="round"/><line x1="262" y1="262" x2="344" y2="262" stroke-width="17" stroke-linecap="round"/><line x1="262" y1="302" x2="324" y2="302" stroke-width="17" stroke-linecap="round"/></g></defs><circle cx="256" cy="256" r="245" fill="#1e3a8a" stroke="#6b7280" stroke-width="8"/><use href="#heroWqmArt" transform="translate(0, 7)" stroke="#061033" opacity="0.6" filter="url(#heroWqmSh)"/><use href="#heroWqmArt" transform="translate(0, 3)" stroke="#b8c7ea"/><use href="#heroWqmArt" stroke="#ffffff"/></svg>
+            </span>
+            <span class="hero-ring-lbl">WQM</span>
+          </a>
+          <span class="hero-ring-node pos-5 is-wps is-disabled" data-i18n-title="ring_wps_tip" title="WPSBuilder Pro (공개 준비 중)">
+            <span class="hero-ring-circle">
+              <svg viewBox="0 0 512 512"><defs><clipPath id="heroWpsClip"><circle cx="256" cy="256" r="245"/></clipPath></defs><g clip-path="url(#heroWpsClip)"><rect x="0" y="0" width="320" height="512" fill="#e61919"/><rect x="320" y="0" width="192" height="512" fill="#ffffff"/><text x="168" y="255" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="120" font-weight="900" letter-spacing="-4" fill="#ffffff">WPS</text><text x="206" y="368" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="900" fill="#ffffff">Build</text><text x="362" y="358" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="900" fill="#1f2937" transform="rotate(-14 362 345)">er</text></g><circle cx="256" cy="256" r="245" fill="none" stroke="#6b7280" stroke-width="8"/></svg>
+            </span>
+            <span class="hero-ring-lbl">WPS</span>
+          </span>
+          <a class="hero-ring-node pos-6 is-next" href="#roadmap" data-i18n-title="ring_next_tip" title="Next: 다음 예정 앱">
+            <span class="hero-ring-circle">
+              <svg viewBox="0 0 512 512"><circle cx="256" cy="256" r="245" fill="#ff7f00" stroke="#6b7280" stroke-width="8"/><text x="256" y="366" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="310" font-weight="900" fill="#ffffff" transform="rotate(180 256 256)">?</text></svg>
+            </span>
+            <span class="hero-ring-lbl">Next</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -452,6 +544,57 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
   <section class="apps" id="apps">
     <div class="wrap">
       <h2 data-i18n="apps_title">제공 중인 앱</h2>
+
+      <article class="app">
+        <div class="gauge" aria-hidden="true">
+          <div class="gauge-top">
+            <small data-i18n="wqm_gauge_lbl">연속성 추적</small>
+            <span class="badge-live">ISO · ASME · AWS</span>
+          </div>
+          <div><span class="val">6M</span><span class="unit">Continuity</span></div>
+          <div class="gauge-foot">ISO 9606-1 · ASME IX · AWS D1.1 · 14732</div>
+        </div>
+        <div class="body">
+          <h3 data-i18n="wqm_title">용접사 자격 관리 (WQM)</h3>
+          <a class="url" href="https://wqm.iskorea.org/">wqm.iskorea.org</a>
+          <p data-i18n="wqm_desc">ISO 9606-1, ASME IX, AWS D1.1, EN ISO 14732 규격 기반 용접사 자격 만료일·6개월 연속성 자동 추적과 적격자 판별, 사진·QR/바코드 자격 카드(PDF·Excel) 생성을 지원합니다.</p>
+          <ul>
+            <li data-i18n="wqm_li1">국제 규격별 자격 만료·6개월 연속성 기한 자동 계산 및 D-30 임박 알림</li>
+            <li data-i18n="wqm_li2">공정·자세·이음부·두께·모재 기반 적격자 즉시 판별(Fit-Check)</li>
+            <li data-i18n="wqm_li3">용접사 증명사진·QR/바코드 자격 카드(PDF·Excel), NDE 이력 및 HEAT 앱 연동</li>
+          </ul>
+          <div class="meta">
+            <span class="tag free" data-i18n="tag_freemium">기본 무료</span>
+            <span class="tag" data-i18n="tag_pro">PRO 기능 있음</span>
+            <span>한국어·English·中文·日本語·Español</span>
+            <span class="visits" data-app="wqm" hidden><span data-i18n="visits_total">누적 방문</span> <b data-k="total">0</b>, <span data-i18n="visits_today">오늘</span> <b data-k="today">0</b></span>
+          </div>
+          <div class="app-actions">
+            <a class="btn" href="https://wqm.iskorea.org/" data-i18n="btn_open">앱 열기</a>
+            <a class="btn-ghost" href="wqm.html" data-i18n="btn_detail">자세히 보기</a>
+          </div>
+        </div>
+        <div class="shots-wrap">
+          <div class="shots">
+            <figure class="shot-wide" data-shot="wqm-1.webp" data-src="screenshots/wqm-1.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="WQM 마스터 리스트 및 연속성 현황" loading="lazy" decoding="async"><figcaption data-i18n="wqm_cap1">마스터 리스트</figcaption></figure>
+            <figure data-shot="wqm-2.webp" data-src="screenshots/wqm-2.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="용접사 사진 및 자격 카드(PDF/Excel)" loading="lazy" decoding="async"><figcaption data-i18n="wqm_cap2">용접사 카드</figcaption></figure>
+            <figure data-shot="wqm-3.webp" data-src="screenshots/wqm-3.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="적격자 판별 및 규격 필터" loading="lazy" decoding="async"><figcaption data-i18n="wqm_cap3">적격자 판별</figcaption></figure>
+            <figure data-shot="wqm-4.webp" data-src="screenshots/wqm-4.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="QR/바코드 스티커 및 NDE 이력" loading="lazy" decoding="async"><figcaption data-i18n="wqm_cap4">QR 스티커·이력</figcaption></figure>
+          </div>
+          <aside class="pro-box">
+            <div>
+              <div class="pro-box-head"><span class="pro-pill">PRO</span><span data-i18n="wqm_pro_title">WQM PRO 기능</span></div>
+              <ul style="margin-top:12px">
+                <li data-i18n="wqm_pro_1">최대 300명 등록 및 ASME IX · EN ISO 14732 규격 지원</li>
+                <li data-i18n="wqm_pro_2">사진·History 시트 포함 Excel(.xlsx) &amp; 공식 PDF 마스터 리스트</li>
+                <li data-i18n="wqm_pro_3">사진·QR/바코드 포함 용접사 카드 일괄 생성 및 연속성 일괄 갱신</li>
+                <li data-i18n="wqm_pro_4">안전모 QR/바코드 스티커 일괄 인쇄, 카메라 스캔 및 HEAT TSV 연동</li>
+              </ul>
+            </div>
+            <div class="pro-box-foot" data-i18n="wqm_pro_foot">앱 상단 Free/PRO 배지에서 기기 번호 확인 후 활성화</div>
+          </aside>
+        </div>
+      </article>
 
       <article class="app">
         <div class="gauge" aria-hidden="true">
@@ -623,7 +766,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
         <div class="guide-card">
           <h3><span class="os-badge">Android</span> Chrome</h3>
           <ol>
-            <li data-i18n="and_1">각 앱 페이지(heat.iskorea.org / wcl.iskorea.org)를 엽니다</li>
+            <li data-i18n="and_1">ISK 메인 페이지(iskorea.org)를 엽니다. (메인페이지에서 사용할 경우)
+- 각 앱별로 추가할 경우, 각 앱 페이지(heat.iskorea.org / wcl.iskorea.org)를 엽니다</li>
             <li data-i18n="and_2">우측 상단 메뉴에서 ‘홈 화면에 추가’ 또는 ‘앱 설치’를 누릅니다</li>
             <li data-i18n="and_3">바탕화면 아이콘으로 전체 화면 앱처럼 실행합니다</li>
           </ol>
@@ -631,7 +775,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
         <div class="guide-card">
           <h3><span class="os-badge">iOS</span> Safari</h3>
           <ol>
-            <li data-i18n="ios_1">Safari에서 각 앱 페이지를 엽니다</li>
+            <li data-i18n="ios_1">ISK 메인 페이지(iskorea.org)를 엽니다. (메인페이지에서 사용할 경우)
+- 각 앱별로 추가할 경우, 각 앱 페이지(heat.iskorea.org / wcl.iskorea.org)를 엽니다</li>
             <li data-i18n="ios_2">하단 공유 버튼을 누르고 ‘홈 화면에 추가’를 선택합니다</li>
             <li data-i18n="ios_3">‘추가’를 누르면 홈 화면에 아이콘이 생성됩니다</li>
           </ol>
@@ -640,25 +785,43 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     </div>
   </section>
 
-  <section class="roadmap-sec" id="roadmap">
+  <section class="roadmap-sec" id="roadmap" style="padding:24px 0;">
     <div class="wrap">
-      <h2 data-i18n="road_title">업데이트 및 준비 소식</h2>
-      <div class="roadmap-grid">
-        <article class="road-card">
-          <span class="road-status done">Live · 2026</span>
-          <h3 data-i18n="road1_t">Heat Input Calculator &amp; WCL 공개</h3>
-          <p data-i18n="road1_d">용접 입열량(AWS/ISO) 및 강재 중량·인양 기구 선정 웹앱을 5개 국어로 서비스 중입니다.</p>
-        </article>
-        <article class="road-card has-q">
-          <span class="road-status next">Next</span>
-          <span class="road-q" aria-hidden="true">?</span>
-        </article>
-        <article class="road-card">
-          <span class="road-status next">Request</span>
-          <h3 data-i18n="road3_t">현장 맞춤 계산기 제안 접수</h3>
-          <p data-i18n="road3_d">배관·철골·플랜트 현장에서 자주 쓰시는 수식이나 점검표를 보내주시면 제작에 반영합니다.</p>
-        </article>
-      </div>
+      <details class="sec-fold" id="roadmapFold">
+        <summary class="sec-fold-head">
+          <div>
+            <h2 data-i18n="road_title">출시 소식 및 개발 일정</h2>
+          </div>
+        </summary>
+        <div class="sec-fold-body">
+          <div class="roadmap-grid">
+            <article class="road-card">
+              <span class="road-status done">Live · 2026</span>
+              <h3 data-i18n="road1_t">Heat Input Calculator &amp; WCL 공개</h3>
+              <p data-i18n="road1_d">용접 입열량(AWS/ISO) 및 강재 중량·인양 기구 선정 웹앱을 5개 국어로 서비스 중입니다.</p>
+            </article>
+            <article class="road-card">
+              <span class="road-status done">Live · 2026</span>
+              <h3 data-i18n="road_wqm_t">용접사 자격 관리 (WQM) 정식 출시</h3>
+              <p data-i18n="road_wqm_d">ISO·ASME·AWS 규격 기반 용접사 자격 만료·6개월 연속성 추적, 사진·QR/바코드 자격 카드(PDF/Excel) 웹앱(wqm.iskorea.org)을 공개했습니다.</p>
+            </article>
+            <article class="road-card">
+              <span class="road-status done">Beta v0.5 · 2026</span>
+              <h3 data-i18n="road_toab_t">강관 진원도 · 터닝롤러 분석기 (TOA) 출시</h3>
+              <p data-i18n="road_toab_d">대형 강관(Φ3,000~15,000mm) 자중·롤러 지지 진원도 예측 및 API·ISO·DNV 규격 판정 웹앱(toab.iskorea.org)을 공개했습니다.</p>
+            </article>
+            <article class="road-card has-q">
+              <span class="road-status next">Next</span>
+              <span class="road-q" aria-hidden="true">?</span>
+            </article>
+            <article class="road-card">
+              <span class="road-status next">Request</span>
+              <h3 data-i18n="road3_t">현장 맞춤 계산기 제안 접수</h3>
+              <p data-i18n="road3_d">배관·철골·플랜트 현장에서 자주 쓰시는 수식이나 점검표를 보내주시면 제작에 반영합니다.</p>
+            </article>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -777,6 +940,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
   </div>
 </div>
 
+<div class="logo-popup" id="logoPopup" hidden role="dialog" aria-modal="true" aria-label="ISKorea Solutions">
+  <img src="logo.jpg" alt="ISKorea Solutions">
+</div>
+
 
 
 <script>
@@ -791,6 +958,19 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       hero_cta:"제공 중인 앱 보기", hero_guide_btn:"홈 화면 추가 방법",
       spec_head:"현장 규격 요약", spec_std:"지원 규격", spec_lang:"지원 언어", spec_offline:"오프라인", spec_offline_val:"PWA 캐시 지원",
       apps_title:"제공 중인 앱",
+      wqm_gauge_lbl:"연속성 추적",
+      wqm_title:"용접사 자격 관리 (WQM)",
+      wqm_desc:"ISO 9606-1, ASME IX, AWS D1.1, EN ISO 14732 규격 기반 용접사 자격 만료일·6개월 연속성 자동 추적과 적격자 판별, 사진·QR/바코드 자격 카드(PDF·Excel) 생성을 지원합니다.",
+      wqm_li1:"국제 규격별 자격 만료·6개월 연속성 기한 자동 계산 및 D-30 임박 알림",
+      wqm_li2:"공정·자세·이음부·두께·모재 기반 적격자 즉시 판별(Fit-Check)",
+      wqm_li3:"용접사 증명사진·QR/바코드 자격 카드(PDF·Excel), NDE 이력 및 HEAT 앱 연동",
+      wqm_cap1:"마스터 리스트", wqm_cap2:"용접사 카드", wqm_cap3:"적격자 판별", wqm_cap4:"QR 스티커·이력",
+      wqm_pro_title:"WQM PRO 기능",
+      wqm_pro_1:"최대 300명 등록 및 ASME IX · EN ISO 14732 규격 지원",
+      wqm_pro_2:"사진·History 시트 포함 Excel(.xlsx) & 공식 PDF 마스터 리스트",
+      wqm_pro_3:"사진·QR/바코드 포함 용접사 카드 일괄 생성 및 연속성 일괄 갱신",
+      wqm_pro_4:"안전모 QR/바코드 스티커 일괄 인쇄, 카메라 스캔 및 HEAT TSV 연동",
+      wqm_pro_foot:"앱 상단 Free/PRO 배지에서 기기 번호 확인 후 활성화",
       heat_gauge_lbl:"실시간 결과",
       heat_desc:"전압, 전류, 용접 길이와 시간을 입력하면 입열량을 바로 계산하고, WPS 기준 범위와 비교해 판정합니다.",
       heat_li1:"AWS, ISO 규격과 FCAW, GMAW, SMAW, GTAW, SAW 공정 지원",
@@ -832,14 +1012,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       visits_total:"누적 방문", visits_today:"오늘", btn_open:"앱 열기", btn_detail:"자세히 보기",
       soon_title:"새로운 앱을 준비하고 있습니다", soon_desc:"현장에 필요한 계산기나 관리 도구가 있다면 알려주세요", soon_btn:"앱 제안하기",
       guide_title:"홈 화면에 추가해 앱처럼 쓰기", guide_sub:"스토어 설치 없이 스마트폰 홈 화면에 바로가기를 추가하면 오프라인 현장에서도 빠르게 열 수 있습니다.",
-      and_1:"각 앱 페이지(heat.iskorea.org / wcl.iskorea.org)를 엽니다",
+      and_1:"ISK 메인 페이지(iskorea.org)를 엽니다. (메인페이지에서 사용할 경우)\n- 각 앱별로 추가할 경우, 각 앱 페이지(heat.iskorea.org / wcl.iskorea.org)를 엽니다",
       and_2:"우측 상단 메뉴에서 ‘홈 화면에 추가’ 또는 ‘앱 설치’를 누릅니다",
       and_3:"바탕화면 아이콘으로 전체 화면 앱처럼 실행합니다",
-      ios_1:"Safari에서 각 앱 페이지를 엽니다",
+      ios_1:"ISK 메인 페이지(iskorea.org)를 엽니다. (메인페이지에서 사용할 경우)\n- 각 앱별로 추가할 경우, 각 앱 페이지(heat.iskorea.org / wcl.iskorea.org)를 엽니다",
       ios_2:"하단 공유 버튼을 누르고 ‘홈 화면에 추가’를 선택합니다",
       ios_3:"‘추가’를 누르면 홈 화면에 아이콘이 생성됩니다",
-      road_title:"업데이트 및 준비 소식",
+      road_title:"출시 소식 및 개발 일정", btn_more:"더보기 +", btn_fold:"접기 −",
       road1_t:"Heat Input Calculator & WCL 공개", road1_d:"용접 입열량(AWS/ISO) 및 강재 중량·인양 기구 선정 웹앱을 5개 국어로 서비스 중입니다.",
+      road_wqm_t:"용접사 자격 관리 (WQM) 정식 출시", road_wqm_d:"ISO·ASME·AWS 규격 기반 용접사 자격 만료·6개월 연속성 추적, 사진·QR/바코드 자격 카드(PDF/Excel) 웹앱(wqm.iskorea.org)을 공개했습니다.",
+      road_toab_t:"강관 진원도 · 터닝롤러 분석기 (TOA) 출시", road_toab_d:"대형 강관(Φ3,000~15,000mm) 자중·롤러 지지 진원도 예측 및 API·ISO·DNV 규격 판정 웹앱(toab.iskorea.org)을 공개했습니다.",
       road2_t:"현장 용접 예열·층간온도 체크 도구", road2_d:"탄소당량(Ceq) 기반 예열 온도 참고 및 패스별 층간온도 기록 기능을 검토 중입니다.",
       road3_t:"현장 맞춤 계산기 제안 접수", road3_d:"배관·철골·플랜트 현장에서 자주 쓰시는 수식이나 점검표를 보내주시면 제작에 반영합니다.",
       support_title:"커피 후원 및 PRO 라이선스 안내",
@@ -869,12 +1051,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq5_q:"후원 확인이나 라이선스·기능 요청은 어디로 문의하나요?",
       faq5_a:"후원 안내 섹션의 1:1 채팅 문의 버튼 또는 isksolution555@gmail.com으로 연락해 주시면 빠르게 확인해 드립니다.",
       faq_note:"찾는 답변이 없다면 카카오 1:1 채팅으로 바로 문의해 주세요.",
-      pop_badge:"NEW · Beta v0.5 출시",
-      pop_title:"강관 진원도 · 터닝롤러 분석기 (TOA) 출시!",
-      pop_desc:"대형 강관(Φ3,000~15,000mm)의 자중·롤러 지지 진원도 예측과 최소 권장 롤러 세트를 분석하는 웹앱을 새롭게 공개했습니다.",
+      pop_badge:"NEW · v1.0 출시",
+      pop_title:"용접사 자격 관리 (WQM) 정식 출시!",
+      pop_desc:"ISO 9606-1·ASME IX·AWS D1.1·14732 기반 용접사 자격 만료·6개월 연속성 추적, 사진·QR/바코드 자격 카드(PDF/Excel)와 적격자 판별을 지원하는 WQM 웹앱을 공개했습니다.",
       pop_li1:"API 2B · ISO 19902 · API 5L · DNV-OS-C401 규격 판정",
       pop_li2:"Roark · Castigliano · Hertz 이론 및 전문 매뉴얼 제공 (PC 권장)",
-      pop_open:"앱 바로 열기", pop_detail:"상세 안내 보기", pop_hide_today:"오늘 다시 보지 않기", pop_hide_forever:"계속 보지 않기"
+      pop_open:"앱 바로 열기", pop_detail:"상세 안내 보기", pop_hide_today:"오늘 다시 보지 않기", pop_hide_forever:"계속 보지 않기",
+      ring_heat_tip:"용접 입열량 계산기 (Heat Input Calculator)",
+      ring_wcl_tip:"강재 중량 및 인양 계산기 (WCL)",
+      ring_toab_tip:"강관 진원도 · 터닝롤러 분석기 (TOA)",
+      ring_wqm_tip:"용접사 자격 관리 (WQM)",
+      ring_wps_tip:"WPSBuilder Pro (공개 준비 중)",
+      ring_next_tip:"Next: 다음 예정 앱"
     },
     en: {
       page_title:"ISKorea Solutions · Industrial Field Web Apps",
@@ -885,6 +1073,19 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       hero_cta:"Explore Apps", hero_guide_btn:"Add to Home Screen",
       spec_head:"Field Spec", spec_std:"Standards", spec_lang:"Languages", spec_offline:"Offline", spec_offline_val:"PWA Cache Ready",
       apps_title:"Available Apps",
+      wqm_gauge_lbl:"Continuity",
+      wqm_title:"Welder Qualification Management (WQM)",
+      wqm_desc:"Track welder qualification expiry and 6-month continuity under ISO 9606-1, ASME IX, AWS D1.1, and EN ISO 14732 with Fit-Check matching and photo/QR/barcode cards (PDF & Excel).",
+      wqm_li1:"Auto-calculates expiry & 6-month continuity deadlines with D-30 alerts",
+      wqm_li2:"Instant Fit-Check filtering by process, position, joint, thickness & material",
+      wqm_li3:"Welder ID photo & QR/barcode cards (PDF/Excel), NDE log & HEAT sync",
+      wqm_cap1:"Master List", wqm_cap2:"Welder Card", wqm_cap3:"Fit-Check", wqm_cap4:"QR Stickers & Log",
+      wqm_pro_title:"WQM PRO Features",
+      wqm_pro_1:"Up to 300 welders plus ASME IX & EN ISO 14732 standards",
+      wqm_pro_2:"Excel (.xlsx) with photos & History sheet + official PDF master list",
+      wqm_pro_3:"Batch photo/QR/barcode welder cards & batch continuity renewal",
+      wqm_pro_4:"Batch helmet QR/barcode stickers, camera scan & HEAT TSV sync",
+      wqm_pro_foot:"Activate via device ID in the Free/PRO badge",
       heat_gauge_lbl:"Live Result",
       heat_desc:"Enter voltage, current, weld length and time to calculate heat input instantly and check against your WPS range.",
       heat_li1:"Supports AWS, ISO standards and FCAW, GMAW, SMAW, GTAW, SAW",
@@ -926,14 +1127,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       visits_total:"Total visits", visits_today:"Today", btn_open:"Open App", btn_detail:"Learn more",
       soon_title:"More field apps are on the way", soon_desc:"Need a specific calculator or inspection tool for your site? Let us know", soon_btn:"Suggest an App",
       guide_title:"Add to Home Screen", guide_sub:"No app store required. Pin the app to your home screen for fast offline access on site.",
-      and_1:"Open heat.iskorea.org or wcl.iskorea.org in Chrome",
+      and_1:"Open the ISK main page (iskorea.org) in Chrome. (To use from main page)\n- To add individual apps, open each app page (heat.iskorea.org / wcl.iskorea.org)",
       and_2:"Tap the menu and select 'Add to Home screen' or 'Install app'",
       and_3:"Launch anytime from your home screen icon",
-      ios_1:"Open the app URL in Safari",
+      ios_1:"Open the ISK main page (iskorea.org) in Safari. (To use from main page)\n- To add individual apps, open each app page (heat.iskorea.org / wcl.iskorea.org)",
       ios_2:"Tap the Share button and choose 'Add to Home Screen'",
       ios_3:"Tap 'Add' to create the app icon",
-      road_title:"Updates & Roadmap",
+      road_title:"Updates & Roadmap", btn_more:"View more +", btn_fold:"Collapse −",
       road1_t:"Heat Input Calculator & WCL Live", road1_d:"Both field web apps are live with 5-language support and offline caching.",
+      road_wqm_t:"Welder Qualification Management (WQM) Released", road_wqm_d:"WQM web app (wqm.iskorea.org) for ISO/ASME/AWS welder continuity tracking and photo/QR/barcode cards (PDF/Excel) is now live.",
+      road_toab_t:"Tubular Ovality & Roller Analysis (TOA) Released", road_toab_d:"Beta v0.5 web app (toab.iskorea.org) for large tubular ovality prediction, roller optimization & API/ISO/DNV checks is now live.",
       road2_t:"Preheat & Interpass Temp Checker", road2_d:"Planning a Ceq-based preheat reference and pass-by-pass interpass temperature logger.",
       road3_t:"Field Tool Requests Open", road3_d:"Send us formulas or checklists you use in piping, steel, or plant sites.",
       support_title:"Coffee Sponsorship & PRO License",
@@ -963,12 +1166,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq5_q:"Where can I confirm my support or request new features?",
       faq5_a:"Reach out anytime via the Kakao 1:1 Chat button at the bottom right or email isksolution555@gmail.com.",
       faq_note:"Still have questions? Message us directly via the Kakao Chat button below.",
-      pop_badge:"NEW · Beta v0.5 Released",
-      pop_title:"Tubular Ovality & Roller Analysis (TOA) is Live!",
-      pop_desc:"New engineering web app for large tubulars (Φ3,000–15,000mm) to predict self-weight & roller ovality and optimize turning roller sets.",
+      pop_badge:"NEW · v1.0 Released",
+      pop_title:"Welder Qualification Management (WQM) is Live!",
+      pop_desc:"Track welder expiry & 6-month continuity under ISO 9606-1, ASME IX, AWS D1.1 & 14732 with Fit-Check and photo/QR/barcode cards (PDF/Excel).",
       pop_li1:"API 2B, ISO 19902, API 5L & DNV-OS-C401 compliance check",
       pop_li2:"Roark, Castigliano & Hertz theory with technical manual (PC recommended)",
-      pop_open:"Open App", pop_detail:"View Details", pop_hide_today:"Don't show today", pop_hide_forever:"Don't show again"
+      pop_open:"Open App", pop_detail:"View Details", pop_hide_today:"Don't show today", pop_hide_forever:"Don't show again",
+      ring_heat_tip:"Heat Input Calculator",
+      ring_wcl_tip:"Steel Weight & Lifting Calculator (WCL)",
+      ring_toab_tip:"Tubular Ovality & Roller Analysis (TOA)",
+      ring_wqm_tip:"Welder Qualification Management (WQM)",
+      ring_wps_tip:"WPSBuilder Pro (Coming Soon)",
+      ring_next_tip:"Next: Upcoming Apps"
     },
     zh: {
       page_title:"ISKorea Solutions · 工业现场计算网页应用",
@@ -979,6 +1188,19 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       hero_cta:"查看应用", hero_guide_btn:"添加到主屏幕",
       spec_head:"现场规格摘要", spec_std:"支持标准", spec_lang:"支持语言", spec_offline:"离线支持", spec_offline_val:"PWA 离线缓存",
       apps_title:"已发布应用",
+      wqm_gauge_lbl:"延续追踪",
+      wqm_title:"焊工资格管理系统 (WQM)",
+      wqm_desc:"基于 ISO 9606-1、ASME IX、AWS D1.1、EN ISO 14732 自动追踪焊工资格到期与6个月延续性，支持适岗筛选及照片/QR/条码资格卡(PDF/Excel)生成。",
+      wqm_li1:"按国际标准自动计算到期日与6个月延续期限及 D-30 临期提醒",
+      wqm_li2:"按工艺、位置、接头、板厚与母材条件即时筛选适岗焊工",
+      wqm_li3:"支持焊工证件照与 QR/条码资格卡(PDF/Excel)、NDE 记录及 HEAT 联动",
+      wqm_cap1:"主清单", wqm_cap2:"焊工资格卡", wqm_cap3:"适岗筛选", wqm_cap4:"贴纸与记录",
+      wqm_pro_title:"WQM PRO 功能",
+      wqm_pro_1:"支持最多 300 名焊工及 ASME IX · EN ISO 14732 标准",
+      wqm_pro_2:"含照片与 History 工作表的 Excel(.xlsx) 及官方 PDF 主清单",
+      wqm_pro_3:"批量生成含照片·QR/条码的资格卡并支持延续性批量更新",
+      wqm_pro_4:"批量打印安全帽 QR/条码贴纸、扫码查询与 HEAT TSV 联动",
+      wqm_pro_foot:"点击应用顶部 Free/PRO 徽章确认设备 ID 后激活",
       heat_gauge_lbl:"实时结果",
       heat_desc:"输入电压、电流、焊缝长度和时间即可计算热输入，并与 WPS 标准范围对比判定。",
       heat_li1:"支持 AWS、ISO 标准及 FCAW、GMAW、SMAW、GTAW、SAW 工艺",
@@ -1020,14 +1242,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       visits_total:"累计访问", visits_today:"今日", btn_open:"打开应用", btn_detail:"查看详情",
       soon_title:"正在准备更多现场应用", soon_desc:"如果现场需要其他计算器或管理工具，欢迎联系建议", soon_btn:"提出建议",
       guide_title:"添加到手机主屏幕", guide_sub:"无需应用商店下载，添加到主屏幕即可在无网络现场快速打开。",
-      and_1:"在 Chrome 中打开应用页面（heat.iskorea.org / wcl.iskorea.org）",
+      and_1:"在 Chrome 中打开 ISK 主页 (iskorea.org)。（从主页使用时）\n- 如按单个应用添加，请打开对应应用页面 (heat.iskorea.org / wcl.iskorea.org)",
       and_2:"点击右上角菜单，选择“添加到主屏幕”或“安装应用”",
       and_3:"即可从桌面图标全屏运行",
-      ios_1:"在 Safari 中打开应用页面",
+      ios_1:"在 Safari 中打开 ISK 主页 (iskorea.org)。（从主页使用时）\n- 如按单个应用添加，请打开对应应用页面 (heat.iskorea.org / wcl.iskorea.org)",
       ios_2:"点击底部分享按钮，选择“添加到主屏幕”",
       ios_3:"点击“添加”即可生成桌面图标",
-      road_title:"更新与开发计划",
+      road_title:"更新与开发计划", btn_more:"查看更多 +", btn_fold:"收起 −",
       road1_t:"Heat Input Calculator & WCL 上线", road1_d:"支持 5 种语言与离线缓存的焊接热输入及钢材吊装计算器已上线。",
+      road_wqm_t:"焊工资格管理系统 (WQM) 正式上线", road_wqm_d:"面向 ISO/ASME/AWS 标准的焊工到期与6个月延续追踪及照片/QR/条码资格卡应用(wqm.iskorea.org)已上线。",
+      road_toab_t:"大口径钢管圆度与滚轮架分析仪 (TOA) 上线", road_toab_d:"面向大型钢管(Φ3,000~15,000mm)的自重与滚轮支撑椭圆度预测及 API·ISO·DNV 规范判定应用(toab.iskorea.org)已上线。",
       road2_t:"焊接预热与层间温度检查工具", road2_d:"正在规划基于碳当量(Ceq)的预热参考及层间温度记录功能。",
       road3_t:"征集现场定制计算器需求", road3_d:"欢迎将管道、钢结构或工厂现场常用的公式发送给我们。",
       support_title:"咖啡赞助与 PRO 授权说明",
@@ -1057,12 +1281,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq5_q:"赞助确认或功能建议应联系哪里？",
       faq5_a:"请点击右下角 Kakao 1:1 聊天按钮或发送邮件至 isksolution555@gmail.com。",
       faq_note:"如果没有找到需要的答案，欢迎点击右下角 Kakao 聊天直接咨询。",
-      pop_badge:"NEW · Beta v0.5 上线",
-      pop_title:"大口径钢管圆度与滚轮架分析仪 (TOA) 正式上线！",
-      pop_desc:"全新发布面向大型钢管(Φ3,000~15,000mm)的自重与滚轮支撑椭圆度预测及滚轮架优化工程网页应用。",
+      pop_badge:"NEW · v1.0 上线",
+      pop_title:"焊工资格管理系统 (WQM) 正式上线！",
+      pop_desc:"全新发布支持 ISO 9606-1·ASME IX·AWS D1.1·14732 焊工资格连续性追踪、适岗筛选与照片/QR/条码资格卡(PDF/Excel)的 WQM 应用。",
       pop_li1:"支持 API 2B · ISO 19902 · API 5L · DNV-OS-C401 规范判定",
       pop_li2:"提供 Roark · 卡氏定理 · 赫兹理论与专业工程手册 (建议 PC 端使用)",
-      pop_open:"立即打开应用", pop_detail:"查看详情", pop_hide_today:"今日不再显示", pop_hide_forever:"不再显示"
+      pop_open:"立即打开应用", pop_detail:"查看详情", pop_hide_today:"今日不再显示", pop_hide_forever:"不再显示",
+      ring_heat_tip:"焊接热输入计算器 (Heat Input Calculator)",
+      ring_wcl_tip:"钢材重量与吊装计算器 (WCL)",
+      ring_toab_tip:"大口径钢管圆度与滚轮架分析仪 (TOA)",
+      ring_wqm_tip:"焊工资格管理系统 (WQM)",
+      ring_wps_tip:"WPSBuilder Pro (即将推出)",
+      ring_next_tip:"Next: 后续计划应用"
     },
     ja: {
       page_title:"ISKorea Solutions · 産業現場向け計算Webアプリ",
@@ -1073,6 +1303,19 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       hero_cta:"提供中のアプリ", hero_guide_btn:"ホーム画面に追加",
       spec_head:"現場仕様概要", spec_std:"対応規格", spec_lang:"対応言語", spec_offline:"オフライン", spec_offline_val:"PWA キャッシュ対応",
       apps_title:"提供中のアプリ",
+      wqm_gauge_lbl:"連続性追跡",
+      wqm_title:"溶接士資格管理 (WQM)",
+      wqm_desc:"ISO 9606-1・ASME IX・AWS D1.1・EN ISO 14732 に基づく溶接士資格の有効期限と6か月連続性を自動追跡し、適格者判定と写真・QR/バーコード資格カード(PDF/Excel)を生成します。",
+      wqm_li1:"国際規格別の有効期限・6か月連続性期限の自動算出と D-30 警告",
+      wqm_li2:"プロセス・姿勢・継手・板厚・母材条件による適格者即時判定",
+      wqm_li3:"証明写真・QR/バーコード資格カード(PDF/Excel)、NDE 履歴 & HEAT 連携",
+      wqm_cap1:"マスターリスト", wqm_cap2:"溶接士カード", wqm_cap3:"適格者判定", wqm_cap4:"ステッカー・履歴",
+      wqm_pro_title:"WQM PRO 機能",
+      wqm_pro_1:"最大 300 名登録および ASME IX · EN ISO 14732 規格対応",
+      wqm_pro_2:"写真・History シート付き Excel(.xlsx) & 公式 PDF リスト出力",
+      wqm_pro_3:"写真・QR/バーコード付き資格カード一括作成 & 連続性一括更新",
+      wqm_pro_4:"ヘルメット QR/バーコード一括印刷、カメラ読取 & HEAT TSV 連携",
+      wqm_pro_foot:"上部の Free/PRO バッジから端末番号を確認して有効化",
       heat_gauge_lbl:"リアルタイム結果",
       heat_desc:"電圧・電流・溶接長・時間を入力して入熱量を即座に計算し、WPS基準範囲と比較判定します。",
       heat_li1:"AWS・ISO規格および FCAW, GMAW, SMAW, GTAW, SAW に対応",
@@ -1114,14 +1357,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       visits_total:"累計訪問", visits_today:"本日", btn_open:"アプリを開く", btn_detail:"詳しく見る",
       soon_title:"新しいアプリを準備中です", soon_desc:"現場で必要な計算機や管理ツールがあればお知らせください", soon_btn:"アプリを提案",
       guide_title:"ホーム画面に追加して使う", guide_sub:"ストアからのインストール不要。ホーム画面に追加すればオフライン現場でもすぐ開けます。",
-      and_1:"Chromeで各アプリ（heat.iskorea.org / wcl.iskorea.org）を開きます",
+      and_1:"ChromeでISKメインページ(iskorea.org)を開きます。（メインページから使う場合）\n- アプリ個別に追加する場合は各アプリページ(heat.iskorea.org / wcl.iskorea.org)を開きます",
       and_2:"右上のメニューから「ホーム画面に追加」または「アプリをインストール」を選択します",
       and_3:"アイコンから全画面アプリのように起動できます",
-      ios_1:"Safariで各アプリを開きます",
+      ios_1:"SafariでISKメインページ(iskorea.org)を開きます。（メインページから使う場合）\n- アプリ個別に追加する場合は各アプリページ(heat.iskorea.org / wcl.iskorea.org)を開きます",
       ios_2:"下部の共有ボタンから「ホーム画面に追加」を選択します",
       ios_3:"「追加」をタップするとアイコンが作成されます",
-      road_title:"アップデート・予定",
+      road_title:"アップデート・予定", btn_more:"もっと見る +", btn_fold:"閉じる −",
       road1_t:"Heat Input Calculator & WCL 公開", road1_d:"5言語対応・オフライン利用可能な溶接入熱量＆鋼材玉掛け計算アプリを公開中です。",
+      road_wqm_t:"溶接士資格管理 (WQM) 正式公開", road_wqm_d:"ISO/ASME/AWS 規格対応の溶接士連続性追跡および写真・QR/バーコード資格カード(PDF/Excel)Webアプリ(wqm.iskorea.org)を公開しました。",
+      road_toab_t:"鋼管真円度・ターニングローラー解析 (TOA) 公開", road_toab_d:"大口径鋼管(Φ3,000〜15,000mm)の真円度予測および API·ISO·DNV 規格判定Webアプリ(toab.iskorea.org)を公開しました。",
       road2_t:"予熱・パス間温度チェックツール", road2_d:"炭素当量(Ceq)に基づく予熱温度目安とパス毎の温度記録機能を検討中です。",
       road3_t:"現場向けツールの要望受付中", road3_d:"配管・鉄骨・プラント現場でよく使う計算式があればぜひお送りください。",
       support_title:"コーヒー支援 & PRO ライセンス案内",
@@ -1151,12 +1396,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq5_q:"支援確認やライセンス・機能追加の問い合わせ先は？",
       faq5_a:"右下のカカオ1:1チャットボタン、または isksolution555@gmail.com までご連絡ください。",
       faq_note:"解決しない場合は右下のカカオチャットよりお気軽にお問い合わせください。",
-      pop_badge:"NEW · Beta v0.5 公開",
-      pop_title:"鋼管真円度・ターニングローラー解析 (TOA) 公開！",
-      pop_desc:"大口径鋼管(Φ3,000〜15,000mm)の自重・ローラー支持真円度予測および必要ローラーセット数解析Webアプリを新たに公開しました。",
+      pop_badge:"NEW · v1.0 公開",
+      pop_title:"溶接士資格管理 (WQM) 正式公開！",
+      pop_desc:"ISO 9606-1・ASME IX・AWS D1.1・14732 対応の溶接士有効期限・6か月連続性追跡、適格者判定、写真・QR/バーコードカード(PDF/Excel)対応アプリを公開しました。",
       pop_li1:"API 2B · ISO 19902 · API 5L · DNV-OS-C401 規格判定に対応",
       pop_li2:"Roark · Castigliano · Hertz 理論と専門マニュアルを提供 (PC画面推奨)",
-      pop_open:"アプリを開く", pop_detail:"詳細を見る", pop_hide_today:"今日は表示しない", pop_hide_forever:"今後表示しない"
+      pop_open:"アプリを開く", pop_detail:"詳細を見る", pop_hide_today:"今日は表示しない", pop_hide_forever:"今後表示しない",
+      ring_heat_tip:"溶接入熱量計算機 (Heat Input Calculator)",
+      ring_wcl_tip:"鋼材重量・玉掛け計算機 (WCL)",
+      ring_toab_tip:"鋼管真円度・ターニングローラー解析 (TOA)",
+      ring_wqm_tip:"溶接士資格管理 (WQM)",
+      ring_wps_tip:"WPSBuilder Pro (公開準備中)",
+      ring_next_tip:"Next: 今後の公開予定アプリ"
     },
     es: {
       page_title:"ISKorea Solutions · Aplicaciones Web Industriales",
@@ -1167,6 +1418,19 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       hero_cta:"Ver Aplicaciones", hero_guide_btn:"Añadir a Inicio",
       spec_head:"Resumen técnico", spec_std:"Normas", spec_lang:"Idiomas", spec_offline:"Sin conexión", spec_offline_val:"Caché PWA lista",
       apps_title:"Aplicaciones Disponibles",
+      wqm_gauge_lbl:"Continuidad",
+      wqm_title:"Gestión de Calificación de Soldadores (WQM)",
+      wqm_desc:"Controla vencimientos y continuidad semestral bajo ISO 9606-1, ASME IX, AWS D1.1 y EN ISO 14732 con Fit-Check y tarjetas con foto/QR/código de barras (PDF y Excel).",
+      wqm_li1:"Cálculo automático de vencimientos y continuidad a 6 meses con aviso D-30",
+      wqm_li2:"Filtro Fit-Check inmediato por proceso, posición, unión, espesor y metal base",
+      wqm_li3:"Tarjetas con foto y QR/barras (PDF/Excel), historial NDE y sinc. con HEAT",
+      wqm_cap1:"Lista Maestra", wqm_cap2:"Tarjeta Soldador", wqm_cap3:"Fit-Check", wqm_cap4:"Etiquetas e Historial",
+      wqm_pro_title:"Funciones PRO de WQM",
+      wqm_pro_1:"Hasta 300 soldadores y soporte para ASME IX y EN ISO 14732",
+      wqm_pro_2:"Excel (.xlsx) con fotos y hoja History + lista maestra oficial PDF",
+      wqm_pro_3:"Tarjetas con foto/QR/barras por lotes y renovación masiva de continuidad",
+      wqm_pro_4:"Impresión de etiquetas QR/barras, escaneo por cámara y sinc. TSV HEAT",
+      wqm_pro_foot:"Actívalo con el ID del dispositivo en la insignia Free/PRO",
       heat_gauge_lbl:"Resultado en vivo",
       heat_desc:"Ingresa voltaje, corriente, longitud y tiempo para calcular el aporte térmico al instante y verificarlo contra el rango WPS.",
       heat_li1:"Compatible con AWS, ISO y procesos FCAW, GMAW, SMAW, GTAW, SAW",
@@ -1208,14 +1472,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       visits_total:"Visitas totales", visits_today:"Hoy", btn_open:"Abrir App", btn_detail:"Ver detalles",
       soon_title:"Nuevas aplicaciones en camino", soon_desc:"¿Necesitas otra calculadora o herramienta de campo? Cuéntanos", soon_btn:"Sugerir App",
       guide_title:"Añadir a la pantalla de inicio", guide_sub:"Sin tiendas de aplicaciones. Guárdala en tu inicio para acceso rápido incluso sin conexión.",
-      and_1:"Abre heat.iskorea.org o wcl.iskorea.org en Chrome",
+      and_1:"Abre la página principal de ISK (iskorea.org) en Chrome. (Si la usas desde la página principal)\n- Para añadir apps individuales, abre cada app (heat.iskorea.org / wcl.iskorea.org)",
       and_2:"Pulsa el menú y elige 'Añadir a pantalla de inicio' o 'Instalar'",
       and_3:"Ábrela en pantalla completa desde tu icono",
-      ios_1:"Abre la aplicación en Safari",
+      ios_1:"Abre la página principal de ISK (iskorea.org) en Safari. (Si la usas desde la página principal)\n- Para añadir apps individuales, abre cada app (heat.iskorea.org / wcl.iskorea.org)",
       ios_2:"Pulsa el botón Compartir y selecciona 'Añadir a pantalla de inicio'",
       ios_3:"Pulsa 'Añadir' para crear el acceso directo",
-      road_title:"Novedades y Hoja de Ruta",
+      road_title:"Novedades y Hoja de Ruta", btn_more:"Ver más +", btn_fold:"Ocultar −",
       road1_t:"Heat Input Calculator y WCL activos", road1_d:"Disponibles en 5 idiomas con soporte offline mediante PWA.",
+      road_wqm_t:"Gestión de Calificación de Soldadores (WQM) Lanzada", road_wqm_d:"Ya está disponible la app WQM (wqm.iskorea.org) para continuidad semestral ISO/ASME/AWS y tarjetas con foto/QR/barras (PDF/Excel).",
+      road_toab_t:"Análisis de Ovalidad y Rodillos (TOA) Lanzado", road_toab_d:"Ya está disponible la app Beta v0.5 (toab.iskorea.org) para predicción de ovalidad y verificación API·ISO·DNV en grandes tubulares.",
       road2_t:"Control de precalentamiento y temperatura", road2_d:"En evaluación: referencia por carbono equivalente (Ceq) y registro entre pasadas.",
       road3_t:"Solicitudes de herramientas", road3_d:"Envíanos fórmulas que uses en tuberías, estructuras o plantas industriales.",
       support_title:"Patrocinio y Licencia PRO",
@@ -1245,12 +1511,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
       faq5_q:"¿Dónde confirmo mi apoyo o envío sugerencias?",
       faq5_a:"Usa el botón de Chat Kakao abajo a la derecha o escribe a isksolution555@gmail.com.",
       faq_note:"¿Tienes otra duda? Escríbenos directo por el chat de Kakao abajo a la derecha.",
-      pop_badge:"NEW · Beta v0.5 Lanzado",
-      pop_title:"¡Nuevo: Análisis de Ovalidad y Rodillos (TOA)!",
-      pop_desc:"Nueva app web de ingeniería para grandes tubulares (Φ3,000–15,000mm) que predice la ovalidad y optimiza juegos de rodillos.",
+      pop_badge:"NEW · v1.0 Lanzado",
+      pop_title:"¡Gestión de Calificación de Soldadores (WQM) Lanzada!",
+      pop_desc:"Nueva app web para controlar vencimientos y continuidad de 6 meses bajo ISO 9606-1, ASME IX, AWS D1.1 y 14732 con tarjetas PDF/Excel.",
       pop_li1:"Verificación API 2B, ISO 19902, API 5L y DNV-OS-C401",
       pop_li2:"Teoría Roark, Castigliano y Hertz con manual técnico (recomendado en PC)",
-      pop_open:"Abrir App", pop_detail:"Ver detalles", pop_hide_today:"No mostrar hoy", pop_hide_forever:"No volver a mostrar"
+      pop_open:"Abrir App", pop_detail:"Ver detalles", pop_hide_today:"No mostrar hoy", pop_hide_forever:"No volver a mostrar",
+      ring_heat_tip:"Calculadora de Aporte Térmico (Heat Input)",
+      ring_wcl_tip:"Calculadora de Peso de Acero e Izaje (WCL)",
+      ring_toab_tip:"Análisis de Ovalidad y Rodillos (TOA)",
+      ring_wqm_tip:"Gestión de Calificación de Soldadores (WQM)",
+      ring_wps_tip:"WPSBuilder Pro (Próximamente)",
+      ring_next_tip:"Next: Próximas aplicaciones"
     }
   };
 
@@ -1273,6 +1545,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var k=el.getAttribute('data-i18n');
       if(dict[k])el.textContent=dict[k];
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(function(el){
+      var k=el.getAttribute('data-i18n-title');
+      if(dict[k])el.setAttribute('title',dict[k]);
     });
     document.querySelectorAll('.shots figure').forEach(function(fig){
       var base=fig.getAttribute('data-shot')||(fig.getAttribute('data-src')||'').split('/').pop();
@@ -1370,7 +1646,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
 
   var nModal=document.getElementById('launchNoticeModal');
   if(nModal){
-    var hideKey='isk_toab_popup_hide_until', hideVal='';
+    var hideKey='isk_wqm_popup_hide_until', hideVal='';
     try{hideVal=localStorage.getItem(hideKey)||'';}catch(e){}
     if(hideVal!=='forever' && Date.now()>(parseInt(hideVal,10)||0)){nModal.hidden=false;}
     function closeNotice(mode){
@@ -1383,6 +1659,21 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     var nHideToday=document.getElementById('noticeHideToday'), nHideForever=document.getElementById('noticeHideForever');
     nHideToday&&nHideToday.addEventListener('click',function(){closeNotice('today');});
     nHideForever&&nHideForever.addEventListener('click',function(){closeNotice('forever');});
+  }
+
+  var brandEl=document.querySelector('header.top .brand'), logoPop=document.getElementById('logoPopup'), logoTimer=null;
+  if(brandEl && logoPop){
+    brandEl.addEventListener('click',function(e){
+      e.preventDefault();
+      window.scrollTo({top:0,behavior:'smooth'});
+      logoPop.hidden=false;
+      if(logoTimer)clearTimeout(logoTimer);
+      logoTimer=setTimeout(function(){logoPop.hidden=true;},2000);
+    });
+    logoPop.addEventListener('click',function(){
+      if(logoTimer)clearTimeout(logoTimer);
+      logoPop.hidden=true;
+    });
   }
 
 })();
@@ -1403,6 +1694,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--su
     var h = location.hash;
     if(h === '#support'){ var sf = document.getElementById('supportFold'); if(sf) sf.open = true; }
     else if(h === '#faq'){ var ff = document.getElementById('faqFold'); if(ff) ff.open = true; }
+    else if(h === '#roadmap'){ var rf = document.getElementById('roadmapFold'); if(rf) rf.open = true; }
   }
   openFoldFromHash();
   window.addEventListener('hashchange', openFoldFromHash);

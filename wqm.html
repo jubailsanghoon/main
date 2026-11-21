@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>용접사 자격 관리 (WQM) · 상세 기능 안내 · ISKorea Solutions</title>
+<meta name="description" content="ISO 9606-1, ASME IX, AWS D1.1, EN ISO 14732 국제 규격 기반 용접사 자격 만료일·6개월 연속성 자동 추적, 적격자 판별, 사진·QR/바코드 자격 카드(PDF/Excel) 및 HEAT 앱 연동을 지원하는 WQM을 안내합니다.">
+<meta name="theme-color" content="#ff7f00">
+<link rel="canonical" href="https://iskorea.org/wqm.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="용접사 자격 관리 (WQM) · 상세 기능 안내">
+<meta property="og:description" content="용접사 WPQ/연속성 관리, 적격자 판별, 사진·QR/바코드 자격 카드(PDF/Excel) 및 HEAT 앱 연동">
+<meta property="og:image" content="https://iskorea.org/logo.jpg">
+<script>
+try{
+  var t=localStorage.getItem("theme");
+  if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);
+  var l=localStorage.getItem("lang");
+  if(l&&/^(ko|en|zh|ja|es)$/.test(l))document.documentElement.setAttribute("lang",l);
+}catch(e){}
+</script>
+<link rel="icon" type="image/svg+xml" href="wqm-logo.svg">
+<link rel="apple-touch-icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{
+  --bg:#eceeef; --panel:#f6f7f8; --panel-hover:#ffffff; --ink:#181e22; --sub:#4f5a61; --muted:#6d7880;
+  --line:rgba(24,30,34,.12); --line-strong:rgba(24,30,34,.2);
+  --orange:#ff7f00; --orange-ink:#b84e00; --steel:#2c4a5c;
+  --display:#14181b; --display-sub:#8c98a1; --display-ink:#f5a642;
+  --ease:cubic-bezier(.2,0,0,1);
+  --font:"IBM Plex Sans KR","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121619; --panel:#191f24; --panel-hover:#20272d; --ink:#e6eaed; --sub:#9aa5ad; --muted:#77838b;
+    --line:rgba(230,234,237,.1); --line-strong:rgba(230,234,237,.2);
+    --orange-ink:#f59e3d; --steel:#8fb4c9; --display:#0b0e10; --display-sub:#7c8891; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121619; --panel:#191f24; --panel-hover:#20272d; --ink:#e6eaed; --sub:#9aa5ad; --muted:#77838b;
+  --line:rgba(230,234,237,.1); --line-strong:rgba(230,234,237,.2);
+  --orange-ink:#f59e3d; --steel:#8fb4c9; --display:#0b0e10; --display-sub:#7c8891; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;line-height:1.65;
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.wrap{max-width:1056px;margin:0 auto;padding:0 24px}
+
+header.top{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap}
+.brand-logo{width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;padding:2px;border:1px solid var(--line)}
+.tools{display:flex;align-items:center;gap:20px}
+header.top nav{display:flex;align-items:center;gap:20px}
+header.top nav a{font-size:14px;color:var(--sub);text-decoration:none;white-space:nowrap}
+header.top nav a:hover{color:var(--ink)}
+.ctrl-group{display:flex;align-items:center;gap:8px}
+.lang-select,.theme{height:36px;font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--panel);
+  border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:background-color 160ms var(--ease),border-color 160ms var(--ease)}
+.lang-select{padding:0 12px}
+.theme{display:inline-flex;align-items:center;gap:8px;padding:0 12px;white-space:nowrap}
+.lang-select:hover,.theme:hover{background:var(--panel-hover);border-color:var(--line-strong)}
+.theme svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--sub)}
+.theme .moon{display:none}
+:root[data-eff="dark"] .theme .sun{display:none}
+:root[data-eff="dark"] .theme .moon{display:block}
+
+.hero{padding:48px 0 40px;border-bottom:1px solid var(--line)}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--sub);text-decoration:none;margin-bottom:20px}
+.back-link:hover{color:var(--ink)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(28px,3.6vw,40px);font-weight:600;line-height:1.2;margin:0 0 12px;letter-spacing:-.02em}
+.hero .url{font-family:var(--mono);font-size:14px;color:var(--orange-ink);text-decoration:none;display:inline-block;margin-bottom:16px}
+.hero p{margin:0 0 24px;color:var(--sub);font-size:16px;max-width:38em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:8px;
+  font-size:14px;font-weight:600;text-decoration:none;transition:background-color 160ms var(--ease),transform 120ms var(--ease)}
+.btn{background:var(--orange);color:#1a1000}
+.btn:hover{background:#eb7500}
+.btn:active,.btn-ghost:active{transform:scale(.98)}
+.btn-ghost{background:var(--panel);color:var(--ink);border:1px solid var(--line);font-weight:500}
+.btn-ghost:hover{background:var(--panel-hover);border-color:var(--line-strong)}
+
+.spec-panel{background:var(--display);color:#e6eaed;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px}
+.spec-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--display-sub);
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.spec-val{font-family:var(--mono);font-size:38px;font-weight:500;color:var(--display-ink);font-variant-numeric:tabular-nums;line-height:1.1;margin:8px 0 16px}
+.spec-val span{font-size:15px;color:#c9a06a;margin-left:8px}
+.spec-formula{padding:12px 16px;background:rgba(255,255,255,.03);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;
+  font-family:var(--mono);font-size:12.5px;color:var(--display-ink);overflow-x:auto;white-space:nowrap}
+
+.sec{padding:56px 0}
+.sec.alt{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2{font-size:22px;font-weight:600;margin:0 0 24px;letter-spacing:-.01em}
+
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.feat-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}
+.sec.alt .feat-card{background:var(--bg)}
+.feat-num{font-family:var(--mono);font-size:12px;color:var(--orange-ink);margin-bottom:8px;display:block}
+.feat-card h3{margin:0 0 8px;font-size:17px;font-weight:600}
+.feat-card p{margin:0;font-size:14px;color:var(--sub)}
+
+.cmp-table{width:100%;border-collapse:collapse;background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+.cmp-table th,.cmp-table td{padding:14px 20px;text-align:left;border-bottom:1px solid var(--line)}
+.cmp-table th{font-weight:600;background:var(--panel);color:var(--ink)}
+.cmp-table tr:last-child td{border-bottom:none}
+.cmp-table td:first-child{font-weight:500}
+.cmp-pro{color:var(--orange-ink);font-weight:500}
+
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:thin}
+.shots figure{margin:0;flex:0 0 auto;width:min(420px,82vw);cursor:pointer;position:relative;scroll-snap-align:start}
+.shots img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--line);
+  border-radius:12px;background:var(--panel);transition:border-color 160ms var(--ease)}
+.shots figure:hover img{border-color:var(--line-strong)}
+.shots figcaption{font-size:13px;color:var(--sub);margin-top:8px;text-align:center}
+.shots figure.missing{cursor:default}
+.shots figure.missing img{display:none}
+.shots figure.missing::before{content:"스크린샷 준비 중\A" attr(data-src);white-space:pre;display:grid;place-items:center;text-align:center;
+  width:100%;aspect-ratio:16/10;border:1px dashed var(--line-strong);border-radius:12px;color:var(--muted);font:12px/1.8 var(--mono);padding:12px}
+
+.faq-list{display:grid;gap:12px}
+.faq-item{background:var(--bg);border:1px solid var(--line);border-radius:12px;transition:border-color 160ms var(--ease)}
+.faq-item[open]{border-color:var(--line-strong)}
+.faq-item summary{list-style:none;cursor:pointer;padding:18px 20px;font-size:15px;font-weight:600;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-family:var(--mono);font-size:18px;font-weight:500;color:var(--orange-ink);flex-shrink:0}
+.faq-item[open] summary::after{content:"−"}
+.faq-item p{margin:0;padding:0 20px 18px;font-size:14px;color:var(--sub);line-height:1.65}
+
+footer{padding:36px 0 48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--sub)}
+
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(12,15,18,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.lightbox[hidden]{display:none}
+.lightbox-inner{position:relative;max-width:min(92vw,960px);width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;touch-action:pan-y;user-select:none}
+.lightbox img{max-height:80vh;width:auto;max-width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.16)}
+.lightbox-cap{color:#e6eaed;font-size:14px}
+.lightbox-close{position:absolute;top:-44px;right:0;height:36px;padding:0 16px;background:var(--panel);color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;
+  background:rgba(20,24,27,.72);color:#fff;border:1px solid rgba(255,255,255,.22);font-size:22px;line-height:1;
+  display:grid;place-items:center;cursor:pointer;transition:background-color 140ms var(--ease)}
+.lightbox-nav:hover{background:rgba(255,127,0,.85);color:#1a1000}
+.lightbox-nav.prev{left:-52px}
+.lightbox-nav.next{right:-52px}
+@media (max-width:560px){.lightbox-nav.prev{left:8px}.lightbox-nav.next{right:8px}}
+
+@media (max-width:860px){
+  .hero-grid,.feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="wqm-logo.svg" alt="WQM Logo">
+      <span>ISKorea Solutions</span>
+    </a>
+    <div class="tools">
+      <nav aria-label="주 메뉴">
+        <a href="index.html#apps" data-i18n="nav_apps">앱</a>
+        <a href="index.html#guide" data-i18n="nav_guide">설치 안내</a>
+        <a href="index.html#support" data-i18n="nav_support">후원</a>
+      </nav>
+      <div class="ctrl-group">
+        <select class="lang-select" id="langSelect" aria-label="Language">
+          <option value="ko">한국어</option>
+          <option value="en">English</option>
+          <option value="zh">中文</option>
+          <option value="ja">日本語</option>
+          <option value="es">Español</option>
+        </select>
+        <button class="theme" id="theme" type="button" aria-label="테마 전환">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <span id="themeLabel">라이트</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <a class="back-link" href="index.html" data-i18n="back_home">← 전체 앱 목록으로</a>
+      <div class="hero-grid">
+        <div>
+          <h1 data-i18n="hero_title">용접사 자격 관리 (WQM)</h1>
+          <a class="url" href="https://wqm.iskorea.org/">wqm.iskorea.org</a>
+          <p data-i18n="hero_desc">ISO 9606-1, ASME IX, AWS D1.1, EN ISO 14732 국제 규격 기반의 용접사 자격 만료일과 6개월 연속성(Continuity)을 자동 추적하고, 적격자 판별·사진/QR/바코드 자격 카드(PDF·Excel)·HEAT 앱 연동까지 한 번에 처리하는 웹앱입니다.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://wqm.iskorea.org/" data-i18n="btn_open">WQM 앱 바로 열기</a>
+            <a class="btn-ghost" href="#features" data-i18n="btn_feat">주요 기능 보기</a>
+          </div>
+        </div>
+        <div class="spec-panel">
+          <div class="spec-head">
+            <span data-i18n="spec_title">WELDER QUALIFICATION</span>
+            <span>ISO · ASME · AWS</span>
+          </div>
+          <div class="spec-val">6M<span>Continuity</span></div>
+          <div class="spec-formula">ISO 9606-1 · ASME IX · AWS D1.1 · 14732</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="features">
+    <div class="wrap">
+      <h2 data-i18n="feat_title">주요 기능 상세</h2>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <span class="feat-num">01</span>
+          <h3 data-i18n="f1_t">국제 규격별 만료·연속성 자동 추적</h3>
+          <p data-i18n="f1_d">ISO 9606-1(3년/연장), EN ISO 14732(6년), ASME IX(연속성 유지 시 무기한), AWS D1.1 규칙에 따라 차기 6개월 연속성 기한과 임박·만료 상태를 자동 계산합니다.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-num">02</span>
+          <h3 data-i18n="f2_t">현장 작업 조건 기반 적격자 즉시 판별</h3>
+          <p data-i18n="f2_d">용접 공정, 자세, 이음부(BW/FW), 두께, 모재 조건을 입력하면 현재 투입 가능한 유효 자격 용접사를 즉시 필터링해 오투입을 방지합니다.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-num">03</span>
+          <h3 data-i18n="f3_t">사진 업로드 및 용접사 카드 (PDF / Excel)</h3>
+          <p data-i18n="f3_d">용접사 등록 시 증명사진을 압축 저장하고, 사진·QR/바코드·적격범위·시험일·연속성 이력이 담긴 공식 용접사 자격 카드를 PDF 및 Excel(.xlsx/.xls)로 생성합니다.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-num">04</span>
+          <h3 data-i18n="f4_t">QR/바코드 스티커 인쇄 및 카메라 스캔</h3>
+          <p data-i18n="f4_d">안전모용 QR(UTF-8 다국어 지원) 및 CODE128 바코드 스티커를 일괄 인쇄하고, 모바일 카메라 스캔으로 현장 용접사 자격 상태를 즉시 조회합니다.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-num">05</span>
+          <h3 data-i18n="f5_t">NDE 불량률 · 연속성 이력 · HEAT 연동</h3>
+          <p data-i18n="f5_d">용접사별 NDE 불량률(>5% 경고), 연속성 갱신 이력, WPQ 성적서 링크를 관리하며 입열량 계산기(HEAT)와 TSV 명단을 양방향 동기화합니다.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-num">06</span>
+          <h3 data-i18n="f6_t">캘린더(.ics) 알림 &amp; 오프라인 PWA</h3>
+          <p data-i18n="f6_d">연속성·만료 일정을 Outlook/Google/Apple 캘린더(.ics)로 내보내고, 마스터 리스트 Excel(사진·History 시트 포함) 및 PDF 보고서 출력과 JSON 백업을 지원합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <h2 data-i18n="cmp_title">Free 버전 vs PRO 버전 비교</h2>
+      <table class="cmp-table">
+        <thead>
+          <tr><th data-i18n="cmp_col1">기능 항목</th><th data-i18n="cmp_col2">Free (무료)</th><th class="cmp-pro" data-i18n="cmp_col3">PRO (영구 활성화)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n="c1_k">등록 가능 용접사 수</td><td data-i18n="c1_f">최대 10명</td><td class="cmp-pro" data-i18n="c1_p">최대 300명</td></tr>
+          <tr><td data-i18n="c2_k">국제 규격 지원</td><td data-i18n="c2_f">AWS D1.1 · ISO 9606-1</td><td class="cmp-pro" data-i18n="c2_p">ASME IX · EN ISO 14732 포함 전체</td></tr>
+          <tr><td data-i18n="c3_k">용접사 사진 &amp; 자격 카드</td><td data-i18n="c3_f">사진 등록 · 카드 미리보기/출력</td><td class="cmp-pro" data-i18n="c3_p">사진·QR/바코드·이력 포함 일괄 PDF/XLSX</td></tr>
+          <tr><td data-i18n="c4_k">마스터 리스트 내보내기</td><td data-i18n="c4_f">기본 CSV 다운로드</td><td class="cmp-pro" data-i18n="c4_p">사진·History 시트 포함 Excel(.xlsx) &amp; PDF</td></tr>
+          <tr><td data-i18n="c5_k">QR/바코드 스티커 &amp; 스캔</td><td data-i18n="c5_f">스티커 1매 미리보기</td><td class="cmp-pro" data-i18n="c5_p">다중 인쇄, 회사 로고 및 카메라 스캔 조회</td></tr>
+          <tr><td data-i18n="c6_k">HEAT 앱 연동 &amp; 백업</td><td data-i18n="c6_f">JSON 백업 및 캘린더(.ics)</td><td class="cmp-pro" data-i18n="c6_p">HEAT TSV 연동 · 연속성 일괄 갱신 전체</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 data-i18n="shots_title">실제 화면 미리보기</h2>
+      <div class="shots">
+        <figure data-shot="wqm-1.webp" data-src="screenshots/ko/wqm-1.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="WQM 마스터 리스트 대시보드" loading="lazy"><figcaption data-i18n="cap1">마스터 리스트 &amp; 연속성 현황</figcaption></figure>
+        <figure data-shot="wqm-2.webp" data-src="screenshots/ko/wqm-2.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="용접사 사진 및 자격 카드 출력" loading="lazy"><figcaption data-i18n="cap2">용접사 카드 (사진·QR/바코드)</figcaption></figure>
+        <figure data-shot="wqm-3.webp" data-src="screenshots/ko/wqm-3.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="적격자 판별 및 규격 필터" loading="lazy"><figcaption data-i18n="cap3">적격자 판별 (Fit-Check)</figcaption></figure>
+        <figure data-shot="wqm-4.webp" data-src="screenshots/ko/wqm-4.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="QR 스티커 및 NDE 이력 관리" loading="lazy"><figcaption data-i18n="cap4">스티커 인쇄 · 이력 관리</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <h2 data-i18n="faq_title">자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary data-i18n="faq1_q">6개월 연속성(Continuity)과 자격 만료일은 어떻게 계산되나요?</summary>
+          <p data-i18n="faq1_a">최근 연속성 확인일 기준으로 +6개월(183일)을 차기 연속성 기한으로 자동 산출하며, 30일 전부터 임박 경고를 표시합니다. 만료일은 ISO 9606-1(3년), EN ISO 14732(6년), ASME IX(연속성 유지 시 계속 유효) 등 규격 규칙에 따라 자동 계산됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq2_q">등록한 용접사 사진과 데이터는 서버에 저장되나요?</summary>
+          <p data-i18n="faq2_a">아니요. 모든 용접사 정보와 압축된 사진 데이터는 외부 서버로 전송되지 않고 사용자 기기의 브라우저 로컬 저장소(localStorage)에만 안전하게 보관됩니다. JSON 백업 기능으로 언제든 PC/모바일 간 이관이 가능합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq3_q">입열량 계산기(HEAT)와 용접사 명단을 연동할 수 있나요?</summary>
+          <p data-i18n="faq3_a">네. [HEAT 앱 연동] 메뉴에서 탭 구분(TSV) 명단을 복사해 HEAT 앱에 붙여넣거나, 반대로 HEAT 앱의 용접사 데이터를 WQM으로 바로 가져올 수 있습니다. 안전모 QR 코드 또한 HEAT 앱과 100% 호환됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq4_q">용접사 카드(Excel/PDF)에는 어떤 정보가 포함되나요?</summary>
+          <p data-i18n="faq4_a">회사 로고, 용접사 증명사진, QR/바코드(스캔용), 기본 인적사항, 국제규격·WPQ 번호·적격 범위(공정/자세/모재/두께/외경), 그리고 하단에 시험일 및 연속성 확인 기록(History)이 모두 포함됩니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Copyright © 2026 ISKorea Solutions. All rights reserved.</span>
+    <a href="index.html">iskorea.org</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="스크린샷 확대 보기">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lbClose" type="button" data-i18n="btn_close">닫기</button>
+    <button class="lightbox-nav prev" id="lbPrev" type="button" aria-label="Previous">&#8249;</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lightbox-nav next" id="lbNext" type="button" aria-label="Next">&#8250;</button>
+    <div class="lightbox-cap" id="lbCap"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var I18N = {
+    ko: {
+      page_title:"용접사 자격 관리 (WQM) · 상세 기능 안내 · ISKorea Solutions",
+      nav_apps:"앱", nav_guide:"설치 안내", nav_support:"후원",
+      theme_light:"라이트", theme_dark:"다크", back_home:"← 전체 앱 목록으로",
+      hero_title:"용접사 자격 관리 (WQM)",
+      hero_desc:"ISO 9606-1, ASME IX, AWS D1.1, EN ISO 14732 국제 규격 기반의 용접사 자격 만료일과 6개월 연속성(Continuity)을 자동 추적하고, 적격자 판별·사진/QR/바코드 자격 카드(PDF·Excel)·HEAT 앱 연동까지 한 번에 처리하는 웹앱입니다.",
+      btn_open:"WQM 앱 바로 열기", btn_feat:"주요 기능 보기", spec_title:"WELDER QUALIFICATION",
+      feat_title:"주요 기능 상세",
+      f1_t:"국제 규격별 만료·연속성 자동 추적", f1_d:"ISO 9606-1(3년/연장), EN ISO 14732(6년), ASME IX(연속성 유지 시 무기한), AWS D1.1 규칙에 따라 차기 6개월 연속성 기한과 임박·만료 상태를 자동 계산합니다.",
+      f2_t:"현장 작업 조건 기반 적격자 즉시 판별", f2_d:"용접 공정, 자세, 이음부(BW/FW), 두께, 모재 조건을 입력하면 현재 투입 가능한 유효 자격 용접사를 즉시 필터링해 오투입을 방지합니다.",
+      f3_t:"사진 업로드 및 용접사 카드 (PDF / Excel)", f3_d:"용접사 등록 시 증명사진을 압축 저장하고, 사진·QR/바코드·적격범위·시험일·연속성 이력이 담긴 공식 용접사 자격 카드를 PDF 및 Excel(.xlsx/.xls)로 생성합니다.",
+      f4_t:"QR/바코드 스티커 인쇄 및 카메라 스캔", f4_d:"안전모용 QR(UTF-8 다국어 지원) 및 CODE128 바코드 스티커를 일괄 인쇄하고, 모바일 카메라 스캔으로 현장 용접사 자격 상태를 즉시 조회합니다.",
+      f5_t:"NDE 불량률 · 연속성 이력 · HEAT 연동", f5_d:"용접사별 NDE 불량률(>5% 경고), 연속성 갱신 이력, WPQ 성적서 링크를 관리하며 입열량 계산기(HEAT)와 TSV 명단을 양방향 동기화합니다.",
+      f6_t:"캘린더(.ics) 알림 & 오프라인 PWA", f6_d:"연속성·만료 일정을 Outlook/Google/Apple 캘린더(.ics)로 내보내고, 마스터 리스트 Excel(사진·History 시트 포함) 및 PDF 보고서 출력과 JSON 백업을 지원합니다.",
+      cmp_title:"Free 버전 vs PRO 버전 비교", cmp_col1:"기능 항목", cmp_col2:"Free (무료)", cmp_col3:"PRO (영구 활성화)",
+      c1_k:"등록 가능 용접사 수", c1_f:"최대 10명", c1_p:"최대 300명",
+      c2_k:"국제 규격 지원", c2_f:"AWS D1.1 · ISO 9606-1", c2_p:"ASME IX · EN ISO 14732 포함 전체",
+      c3_k:"용접사 사진 & 자격 카드", c3_f:"사진 등록 · 카드 미리보기/출력", c3_p:"사진·QR/바코드·이력 포함 일괄 PDF/XLSX",
+      c4_k:"마스터 리스트 내보내기", c4_f:"기본 CSV 다운로드", c4_p:"사진·History 시트 포함 Excel(.xlsx) & PDF",
+      c5_k:"QR/바코드 스티커 & 스캔", c5_f:"스티커 1매 미리보기", c5_p:"다중 인쇄, 회사 로고 및 카메라 스캔 조회",
+      c6_k:"HEAT 앱 연동 & 백업", c6_f:"JSON 백업 및 캘린더(.ics)", c6_p:"HEAT TSV 연동 · 연속성 일괄 갱신 전체",
+      shots_title:"실제 화면 미리보기", cap1:"마스터 리스트 & 연속성 현황", cap2:"용접사 카드 (사진·QR/바코드)", cap3:"적격자 판별 (Fit-Check)", cap4:"스티커 인쇄 · 이력 관리",
+      faq_title:"자주 묻는 질문", btn_close:"닫기",
+      faq1_q:"6개월 연속성(Continuity)과 자격 만료일은 어떻게 계산되나요?",
+      faq1_a:"최근 연속성 확인일 기준으로 +6개월(183일)을 차기 연속성 기한으로 자동 산출하며, 30일 전부터 임박 경고를 표시합니다. 만료일은 ISO 9606-1(3년), EN ISO 14732(6년), ASME IX(연속성 유지 시 계속 유효) 등 규격 규칙에 따라 자동 계산됩니다.",
+      faq2_q:"등록한 용접사 사진과 데이터는 서버에 저장되나요?",
+      faq2_a:"아니요. 모든 용접사 정보와 압축된 사진 데이터는 외부 서버로 전송되지 않고 사용자 기기의 브라우저 로컬 저장소(localStorage)에만 안전하게 보관됩니다. JSON 백업 기능으로 언제든 PC/모바일 간 이관이 가능합니다.",
+      faq3_q:"입열량 계산기(HEAT)와 용접사 명단을 연동할 수 있나요?",
+      faq3_a:"네. [HEAT 앱 연동] 메뉴에서 탭 구분(TSV) 명단을 복사해 HEAT 앱에 붙여넣거나, 반대로 HEAT 앱의 용접사 데이터를 WQM으로 바로 가져올 수 있습니다. 안전모 QR 코드 또한 HEAT 앱과 100% 호환됩니다.",
+      faq4_q:"용접사 카드(Excel/PDF)에는 어떤 정보가 포함되나요?",
+      faq4_a:"회사 로고, 용접사 증명사진, QR/바코드(스캔용), 기본 인적사항, 국제규격·WPQ 번호·적격 범위(공정/자세/모재/두께/외경), 그리고 하단에 시험일 및 연속성 확인 기록(History)이 모두 포함됩니다."
+    },
+    en: {
+      page_title:"Welder Qualification Management (WQM) · Details · ISKorea Solutions",
+      nav_apps:"Apps", nav_guide:"Install", nav_support:"Support",
+      theme_light:"Light", theme_dark:"Dark", back_home:"← Back to all apps",
+      hero_title:"Welder Qualification Management (WQM)",
+      hero_desc:"Track welder qualification expiry and 6-month continuity under ISO 9606-1, ASME IX, AWS D1.1, and EN ISO 14732. Includes Fit-Check matching, photo/QR/barcode welder cards (PDF & Excel), and HEAT app sync.",
+      btn_open:"Launch WQM", btn_feat:"Key Features", spec_title:"WELDER QUALIFICATION",
+      feat_title:"Key Features",
+      f1_t:"Auto Tracking by International Standards", f1_d:"Automatically calculates next 6-month continuity deadlines and expiry alerts for ISO 9606-1, EN ISO 14732, ASME IX, and AWS D1.1.",
+      f2_t:"Instant Fit-Check Matching", f2_d:"Enter welding process, position, joint type, thickness, and base metal to immediately filter qualified welders for the job.",
+      f3_t:"Photo Upload & Welder Card (PDF / Excel)", f3_d:"Store compressed welder ID photos and generate official qualification cards with photo, QR/barcode, qualified range, test date, and continuity history in PDF and Excel (.xlsx/.xls).",
+      f4_t:"QR/Barcode Stickers & Camera Scan", f4_d:"Print helmet QR codes (full UTF-8 support) and CODE128 barcodes, and scan them with a mobile camera for instant status verification.",
+      f5_t:"NDE Reject Rate, History & HEAT Sync", f5_d:"Monitor NDE reject rate (>5% alert), continuity logs, and WPQ document links, with bidirectional TSV sync to Heat Input Calculator.",
+      f6_t:"Calendar (.ics) Alerts & Offline PWA", f6_d:"Export continuity/expiry schedules to Outlook/Google/Apple Calendar (.ics), export master lists with photos and history sheets, and back up via JSON.",
+      cmp_title:"Free vs PRO Comparison", cmp_col1:"Feature", cmp_col2:"Free", cmp_col3:"PRO (Lifetime)",
+      c1_k:"Max Welders", c1_f:"Up to 10 welders", c1_p:"Up to 300 welders",
+      c2_k:"Standards Supported", c2_f:"AWS D1.1 · ISO 9606-1", c2_p:"All including ASME IX & EN ISO 14732",
+      c3_k:"Photo & Welder Card", c3_f:"Photo upload · Card preview/export", c3_p:"Batch PDF/XLSX cards with photo, QR/bar & history",
+      c4_k:"Master List Export", c4_f:"Basic CSV export", c4_p:"Excel (.xlsx) with photos & History sheet + PDF",
+      c5_k:"QR/Barcode Stickers & Scan", c5_f:"1 sticker preview", c5_p:"Batch print, company logo & camera scan",
+      c6_k:"HEAT Sync & Backup", c6_f:"JSON backup & .ics calendar", c6_p:"HEAT TSV sync & batch continuity renewal",
+      shots_title:"Screenshots", cap1:"Master List & Continuity", cap2:"Welder Card (Photo·QR/Bar)", cap3:"Fit-Check Matching", cap4:"Stickers & History Log",
+      faq_title:"FAQ", btn_close:"Close",
+      faq1_q:"How are 6-month continuity and expiry dates calculated?",
+      faq1_a:"Next continuity is calculated as +6 months (183 days) from the last verification date with a 30-day expiring warning. Expiry follows ISO 9606-1 (3 yrs), EN ISO 14732 (6 yrs), and ASME IX (indefinite while continuity is maintained).",
+      faq2_q:"Are welder photos and records uploaded to an external server?",
+      faq2_a:"No. All welder records and compressed photos stay strictly in your browser's localStorage. You can transfer data anytime via JSON backup.",
+      faq3_q:"Can WQM sync welder rosters with Heat Input Calculator (HEAT)?",
+      faq3_a:"Yes. Use [HEAT App Sync] to copy/import TSV welder lists bidirectionally. Helmet QR codes are also 100% compatible with HEAT.",
+      faq4_q:"What is included in the Welder Card (Excel/PDF)?",
+      faq4_a:"Company logo, welder photo, QR/barcode, personal & WPQ details, qualified ranges, plus test date and continuity verification history at the bottom."
+    },
+    zh: {
+      page_title:"焊工资格管理系统 (WQM) · 详情介绍 · ISKorea Solutions",
+      nav_apps:"应用", nav_guide:"安装指南", nav_support:"赞助",
+      theme_light:"浅色", theme_dark:"深色", back_home:"← 返回全部应用",
+      hero_title:"焊工资格管理系统 (WQM)",
+      hero_desc:"基于 ISO 9606-1、ASME IX、AWS D1.1、EN ISO 14732 国际标准自动追踪焊工资格到期与6个月延续性(Continuity)，支持适岗筛选、证件照/QR/条码资格卡(PDF/Excel)及 HEAT 应用联动。",
+      btn_open:"立即打开 WQM", btn_feat:"查看主要功能", spec_title:"WELDER QUALIFICATION",
+      feat_title:"主要功能详情",
+      f1_t:"国际标准到期与延续性自动追踪", f1_d:"根据 ISO 9606-1、EN ISO 14732、ASME IX、AWS D1.1 规则自动计算下次6个月延续期限并提示临期/过期预警。",
+      f2_t:"现场焊接条件适岗筛选", f2_d:"输入焊接工艺、位置、接头、板厚与母材条件，立即筛选出具备有效资格的焊工。",
+      f3_t:"证件照上传与焊工资格卡 (PDF / Excel)", f3_d:"支持上传压缩证件照，并导出包含照片、QR/条码、合格范围、考试日期与延续记录的官方资格卡（PDF 与 Excel .xlsx/.xls）。",
+      f4_t:"QR/条码安全帽贴纸打印与扫码查询", f4_d:"批量打印支持 UTF-8 多语言的 QR 二维码与 CODE128 条码贴纸，手机扫码即可核验资格状态。",
+      f5_t:"NDE 不合格率、延续记录与 HEAT 联动", f5_d:"跟踪 NDE 不合格率（>5% 预警）、延续确认记录及 WPQ 报告链接，并与热输入计算器 HEAT 双向同步 TSV 名单。",
+      f6_t:"日历(.ics)提醒与离线 PWA", f6_d:"将延续/到期日程导出至日历(.ics)，支持含照片与 History 工作表的 Excel/PDF 主清单及 JSON 备份。",
+      cmp_title:"Free 版 vs PRO 版对比", cmp_col1:"功能项目", cmp_col2:"Free (免费)", cmp_col3:"PRO (永久激活)",
+      c1_k:"可登记焊工数", c1_f:"最多 10 名", c1_p:"最多 300 名",
+      c2_k:"支持国际标准", c2_f:"AWS D1.1 · ISO 9606-1", c2_p:"含 ASME IX · EN ISO 14732 全部",
+      c3_k:"照片与焊工资格卡", c3_f:"照片上传 · 资格卡预览/导出", c3_p:"含照片·QR/条码·记录的批量 PDF/XLSX",
+      c4_k:"主清单导出", c4_f:"基础 CSV 导出", c4_p:"含照片与 History 工作表的 Excel(.xlsx) & PDF",
+      c5_k:"QR/条码贴纸与扫码", c5_f:"单张预览", c5_p:"批量打印、公司 Logo 与相机扫码查询",
+      c6_k:"HEAT 联动与备份", c6_f:"JSON 备份与日历(.ics)", c6_p:"HEAT TSV 同步与批量延续更新",
+      shots_title:"界面预览", cap1:"主清单与延续状态", cap2:"焊工资格卡 (照片·QR/条码)", cap3:"适岗筛选 (Fit-Check)", cap4:"贴纸打印与历史记录",
+      faq_title:"常见问题", btn_close:"关闭",
+      faq1_q:"6个月延续性与资格到期日如何计算？",
+      faq1_a:"以最近延续确认日起 +6 个月（183天）计算下次延续期限，提前 30 天预警；到期日依据 ISO 9606-1（3年）、EN ISO 14732（6年）、ASME IX（保持延续则持续有效）自动计算。",
+      faq2_q:"上传的焊工照片和数据会保存到服务器吗？",
+      faq2_a:"不会。所有焊工数据与压缩后的照片仅保存在本地浏览器 localStorage 中，可通过 JSON 备份随时迁移。",
+      faq3_q:"可以与热输入计算器 (HEAT) 同步焊工名单吗？",
+      faq3_a:"可以。在 [HEAT 应用联动] 中可双向复制/导入 TSV 名单，安全帽 QR 码也与 HEAT 完全兼容。",
+      faq4_q:"焊工资格卡 (Excel/PDF) 包含哪些内容？",
+      faq4_a:"包含公司 Logo、焊工照片、QR/条码、个人与 WPQ 信息、合格范围，以及底部的考试日期与延续确认记录（History）。"
+    },
+    ja: {
+      page_title:"溶接士資格管理 (WQM) · 詳細案内 · ISKorea Solutions",
+      nav_apps:"アプリ", nav_guide:"導入方法", nav_support:"支援",
+      theme_light:"ライト", theme_dark:"ダーク", back_home:"← アプリ一覧へ戻る",
+      hero_title:"溶接士資格管理 (WQM)",
+      hero_desc:"ISO 9606-1、ASME IX、AWS D1.1、EN ISO 14732 規格に基づく溶接士資格の有効期限と6か月連続性(Continuity)を自動追跡し、適格者判定、写真・QR/バーコード付き資格カード(PDF/Excel)、HEAT連携まで一括管理できるWebアプリです。",
+      btn_open:"WQM を開く", btn_feat:"主な機能", spec_title:"WELDER QUALIFICATION",
+      feat_title:"主な機能詳細",
+      f1_t:"国際規格別の期限・連続性自動追跡", f1_d:"ISO 9606-1、EN ISO 14732、ASME IX、AWS D1.1 のルールに従い、次回6か月連続性期限と切迫・期限切れを自動判定します。",
+      f2_t:"作業条件による適格者即時判定", f2_d:"溶接プロセス、姿勢、継手、板厚、母材を入力すると、作業可能な有資格溶接士を即座に抽出します。",
+      f3_t:"写真アップロード & 溶接士カード (PDF / Excel)", f3_d:"証明写真を圧縮保存し、写真・QR/バーコード・適格範囲・試験日・連続性履歴を含む公式資格カードを PDF / Excel(.xlsx/.xls) で出力します。",
+      f4_t:"QR/バーコードステッカー印刷 & スキャン", f4_d:"ヘルメット用 QR（UTF-8多言語対応）と CODE128 バーコードを一括印刷し、スマホカメラで資格状態を即座に照会できます。",
+      f5_t:"NDE 不良率・履歴管理 & HEAT 連携", f5_d:"NDE 不良率（>5% 警告）、連続性更新履歴、WPQ 資料リンクを管理し、入熱量計算機(HEAT)と TSV 名簿を双方向同期します。",
+      f6_t:"カレンダー(.ics)通知 & オフライン PWA", f6_d:"連続性・有効期限予定を .ics で出力し、写真・History シート付き Excel/PDF マスターリストや JSON バックアップに対応します。",
+      cmp_title:"Free 版 vs PRO 版 比較", cmp_col1:"機能項目", cmp_col2:"Free (無料)", cmp_col3:"PRO (永久有効化)",
+      c1_k:"登録可能な溶接士数", c1_f:"最大 10 名", c1_p:"最大 300 名",
+      c2_k:"対応国際規格", c2_f:"AWS D1.1 · ISO 9606-1", c2_p:"ASME IX · EN ISO 14732 含む全規格",
+      c3_k:"写真 & 溶接士カード", c3_f:"写真登録 · カードプレビュー/出力", c3_p:"写真・QR/バーコード・履歴付き一括 PDF/XLSX",
+      c4_k:"マスターリスト出力", c4_f:"基本 CSV 出力", c4_p:"写真・History シート付き Excel(.xlsx) & PDF",
+      c5_k:"QR/バーコード & スキャン", c5_f:"1枚プレビュー", c5_p:"一括印刷・会社ロゴ・カメラスキャン照会",
+      c6_k:"HEAT 連携 & バックアップ", c6_f:"JSON バックアップ & .ics", c6_p:"HEAT TSV 同期 & 一括連続性更新",
+      shots_title:"画面プレビュー", cap1:"マスターリスト & 連続性状況", cap2:"溶接士カード (写真·QR/バーコード)", cap3:"適格者判定 (Fit-Check)", cap4:"ステッカー印刷・履歴管理",
+      faq_title:"よくある質問", btn_close:"閉じる",
+      faq1_q:"6か月連続性と有効期限はどのように計算されますか？",
+      faq1_a:"直近の確認日から +6か月（183日）を次回連続性期限として算出し、30日前から警告を表示します。有効期限は ISO 9606-1（3年）、EN ISO 14732（6年）、ASME IX（連続性維持で継続有効）に準拠します。",
+      faq2_q:"登録した写真やデータはサーバーに送信されますか？",
+      faq2_a:"いいえ。すべての溶接士データと圧縮写真はブラウザの localStorage のみに保存され、JSON バックアップでいつでも移行できます。",
+      faq3_q:"入熱量計算機 (HEAT) と名簿を連携できますか？",
+      faq3_a:"はい。[HEATアプリ連携] から TSV 形式で双方向に名簿をコピー・取込でき、ヘルメット QR コードも HEAT と完全互換です。",
+      faq4_q:"溶接士カード (Excel/PDF) には何が含まれますか？",
+      faq4_a:"会社ロゴ、証明写真、QR/バーコード、基本情報・WPQ・適格範囲に加え、下部に試験日と連続性確認履歴（History）が含まれます。"
+    },
+    es: {
+      page_title:"Gestión de Calificación de Soldadores (WQM) · Detalles · ISKorea Solutions",
+      nav_apps:"Apps", nav_guide:"Instalar", nav_support:"Apoyo",
+      theme_light:"Claro", theme_dark:"Oscuro", back_home:"← Volver a todas las apps",
+      hero_title:"Gestión de Calificación de Soldadores (WQM)",
+      hero_desc:"Controla vencimientos y continuidad semestral bajo ISO 9606-1, ASME IX, AWS D1.1 y EN ISO 14732, con verificación Fit-Check, tarjetas con foto/QR/código de barras (PDF y Excel) y sincronización con HEAT.",
+      btn_open:"Abrir WQM", btn_feat:"Ver funciones", spec_title:"WELDER QUALIFICATION",
+      feat_title:"Funciones Principales",
+      f1_t:"Seguimiento Automático por Norma", f1_d:"Calcula automáticamente la próxima continuidad a 6 meses y alertas de vencimiento según ISO 9606-1, EN ISO 14732, ASME IX y AWS D1.1.",
+      f2_t:"Verificación Fit-Check Inmediata", f2_d:"Ingresa proceso, posición, unión, espesor y metal base para filtrar al instante los soldadores calificados disponibles.",
+      f3_t:"Carga de Foto y Tarjeta (PDF / Excel)", f3_d:"Guarda fotos tipo carné comprimidas y genera tarjetas oficiales con foto, QR/código, rango calificado, fecha de prueba e historial en PDF y Excel (.xlsx/.xls).",
+      f4_t:"Etiquetas QR/Barras y Escaneo", f4_d:"Imprime etiquetas QR (con soporte UTF-8) y CODE128 para cascos, y escanéalas con la cámara móvil para consultar el estado al instante.",
+      f5_t:"Tasa NDE, Historial y Sincronización HEAT", f5_d:"Controla la tasa de rechazo NDE (alerta >5%), registros de continuidad y enlaces WPQ, con intercambio TSV bidireccional con HEAT.",
+      f6_t:"Alertas de Calendario (.ics) y PWA Offline", f6_d:"Exporta fechas al calendario (.ics), listas maestras en Excel (con fotos y hoja History) y PDF, más respaldo en JSON.",
+      cmp_title:"Comparación Free vs PRO", cmp_col1:"Función", cmp_col2:"Free (Gratis)", cmp_col3:"PRO (Permanente)",
+      c1_k:"Máximo de Soldadores", c1_f:"Hasta 10 soldadores", c1_p:"Hasta 300 soldadores",
+      c2_k:"Normas Soportadas", c2_f:"AWS D1.1 · ISO 9606-1", c2_p:"Todas incl. ASME IX y EN ISO 14732",
+      c3_k:"Foto y Tarjeta de Soldador", c3_f:"Subida de foto · Vista/exportación", c3_p:"PDF/XLSX por lotes con foto, QR/barras e historial",
+      c4_k:"Exportación Lista Maestra", c4_f:"CSV básico", c4_p:"Excel (.xlsx) con fotos y hoja History + PDF",
+      c5_k:"Etiquetas QR/Barras y Escáner", c5_f:"Vista previa de 1 etiqueta", c5_p:"Impresión masiva, logo y escaneo con cámara",
+      c6_k:"Sinc. HEAT y Respaldo", c6_f:"Respaldo JSON y .ics", c6_p:"Sincronización TSV con HEAT y renovación masiva",
+      shots_title:"Capturas de Pantalla", cap1:"Lista Maestra y Continuidad", cap2:"Tarjeta (Foto·QR/Barras)", cap3:"Verificación Fit-Check", cap4:"Etiquetas e Historial",
+      faq_title:"Preguntas Frecuentes", btn_close:"Cerrar",
+      faq1_q:"¿Cómo se calculan la continuidad de 6 meses y el vencimiento?",
+      faq1_a:"La próxima continuidad se calcula +6 meses (183 días) desde la última verificación con aviso 30 días antes. El vencimiento sigue ISO 9606-1 (3 años), EN ISO 14732 (6 años) y ASME IX (indefinido manteniendo continuidad).",
+      faq2_q:"¿Las fotos y datos de los soldadores se suben a un servidor?",
+      faq2_a:"No. Todos los datos y fotos comprimidas permanecen solo en el localStorage de tu navegador y pueden respaldarse en JSON.",
+      faq3_q:"¿Se puede sincronizar la lista con Heat Input Calculator (HEAT)?",
+      faq3_a:"Sí. En [Sinc. HEAT App] puedes copiar o importar listas TSV bidireccionalmente y los códigos QR son 100% compatibles.",
+      faq4_q:"¿Qué incluye la Tarjeta de Soldador (Excel/PDF)?",
+      faq4_a:"Logo de la empresa, foto del soldador, QR/código de barras, datos personales y WPQ, rangos calificados, más fecha de prueba e historial de continuidad."
+    }
+  };
+  var root=document.documentElement, btn=document.getElementById('theme'), label=document.getElementById('themeLabel'), langSel=document.getElementById('langSelect');
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function getLang(){var s=null;try{s=localStorage.getItem('lang');}catch(e){}if(s&&I18N[s])return s;var n=(navigator.language||'ko').slice(0,2).toLowerCase();return I18N[n]?n:'ko';}
+  function applyLang(c){
+    var d=I18N[c]||I18N.ko;
+    root.setAttribute('lang',c);
+    langSel.value=c;
+    document.title=d.page_title;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k])el.textContent=d[k];});
+    document.querySelectorAll('.shots figure').forEach(function(fig){
+      var base=fig.getAttribute('data-shot')||(fig.getAttribute('data-src')||'').split('/').pop();
+      if(!base)return;
+      fig.setAttribute('data-shot',base);
+      var p='screenshots/'+c+'/'+base;
+      fig.setAttribute('data-src',p);
+      var im=fig.querySelector('img');
+      if(im){fig.classList.remove('missing');im.src=p;}
+    });
+    paintTheme();
+  }
+  langSel.addEventListener('change',function(){var c=langSel.value;try{localStorage.setItem('lang',c);}catch(e){}applyLang(c);});
+  function eff(){var t=root.getAttribute('data-theme');return t||(mq.matches?'dark':'light');}
+  function paintTheme(){var e=eff(),d=I18N[langSel.value]||I18N.ko;root.setAttribute('data-eff',e);label.textContent=e==='dark'?d.theme_dark:d.theme_light;}
+  try{var st=localStorage.getItem('theme');if(st==='light'||st==='dark')root.setAttribute('data-theme',st);}catch(e){}
+  applyLang(getLang());
+  btn.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}paintTheme();});
+  mq.addEventListener&&mq.addEventListener('change',paintTheme);
+
+  var lb=document.getElementById('lightbox'), lbInner=lb.querySelector('.lightbox-inner'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap'), lbClose=document.getElementById('lbClose'), lbPrev=document.getElementById('lbPrev'), lbNext=document.getElementById('lbNext');
+  var lbGroup=[], lbIdx=0;
+  function showLbAt(i){
+    if(!lbGroup.length)return;
+    lbIdx=(i+lbGroup.length)%lbGroup.length;
+    var fig=lbGroup[lbIdx], img=fig.querySelector('img'), cap=fig.querySelector('figcaption');
+    lbImg.src=img.src; lbImg.alt=img.alt;
+    lbCap.textContent=(cap?cap.textContent:'')+' ('+(lbIdx+1)+' / '+lbGroup.length+')';
+  }
+  document.querySelectorAll('.shots').forEach(function(groupEl){
+    var figs=Array.from(groupEl.querySelectorAll('figure'));
+    figs.forEach(function(fig){
+      var img=fig.querySelector('img');
+      function miss(){fig.classList.add('missing');}
+      img.addEventListener('error',miss);
+      if(img.complete&&img.naturalWidth===0)miss();
+      fig.addEventListener('click',function(){
+        if(fig.classList.contains('missing'))return;
+        lbGroup=figs.filter(function(f){return !f.classList.contains('missing');});
+        var idx=lbGroup.indexOf(fig);
+        showLbAt(idx<0?0:idx);
+        lb.hidden=false;
+      });
+    });
+  });
+  function closeLb(){lb.hidden=true;lbImg.src='';}
+  lbClose.addEventListener('click',closeLb);
+  lbPrev&&lbPrev.addEventListener('click',function(e){e.stopPropagation();showLbAt(lbIdx-1);});
+  lbNext&&lbNext.addEventListener('click',function(e){e.stopPropagation();showLbAt(lbIdx+1);});
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',function(e){
+    if(lb.hidden)return;
+    if(e.key==='Escape')closeLb();
+    else if(e.key==='ArrowLeft')showLbAt(lbIdx-1);
+    else if(e.key==='ArrowRight')showLbAt(lbIdx+1);
+  });
+  var touchX=0, touchY=0;
+  lbInner.addEventListener('touchstart',function(e){if(e.touches.length===1){touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;}},{passive:true});
+  lbInner.addEventListener('touchend',function(e){
+    if(!e.changedTouches.length)return;
+    var dx=e.changedTouches[0].clientX-touchX, dy=e.changedTouches[0].clientY-touchY;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){showLbAt(dx<0?lbIdx+1:lbIdx-1);}
+  },{passive:true});
+})();
+
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if(this.open){
+        document.querySelectorAll('.faq-item').forEach(function(other){
+          if(other !== item && other.open) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
